@@ -5,9 +5,9 @@
 # Key links
 
 * [The full collection of course notes](https://waldronbios2.github.io/cunybios2/)
-* [This session's web page](https://waldronbios2.github.io/templatesession/)
-* [This session's GitHub page](https://github.com/waldronbios2/templatesession)
-* The URL to clone this session locally using `git` is https://github.com/waldronbios2/templatesession.git
+* [This session's web page](https://waldronbios2.github.io/session3/)
+* [This session's GitHub page](https://github.com/waldronbios2/session3)
+* The URL to clone this session locally using `git` is https://github.com/waldronbios2/session3.git
     + Note: code is in the "vignettes" folder
 
 # Session N: title
