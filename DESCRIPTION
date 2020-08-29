@@ -1,6 +1,6 @@
-Package: sessionN
+Package: session3
 Type: Package
-Title: Lecture and lab materials for CUNY Biostatistics 2 session N
+Title: Lecture and lab materials for CUNY Biostatistics 2 session 3
 Version: 0.1.0
 Author: Levi Waldron
 Maintainer: Levi Waldron <lwaldron.research@gmail.com>

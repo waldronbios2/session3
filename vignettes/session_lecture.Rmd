@@ -1,5 +1,5 @@
 ---
-title: "Session N: What this lecture is about"
+title: "Session 3: What this lecture is about"
 author: "Levi Waldron"
 institute: "CUNY SPH Biostatistics 2"
 output:

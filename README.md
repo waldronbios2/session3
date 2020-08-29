@@ -1,14 +1,6 @@
   <!-- badges: start -->
-  [![Actions Status](https://github.com/waldronbios2/template_session/workflows/Render%20and%20Deploy%20pkgdown%20Website/badge.svg)](https://github.com/waldronbios2/template_session/actions)
+  [![Actions Status](https://github.com/waldronbios2/session3/workflows/Render%20and%20Deploy%20pkgdown%20Website/badge.svg)](https://github.com/waldronbios2/session3/actions)
   <!-- badges: end -->
-
-# Key links
-
-* [The full collection of course notes](https://waldronbios2.github.io/cunybios2/)
-* [This session's web page](https://waldronbios2.github.io/session3/)
-* [This session's GitHub page](https://github.com/waldronbios2/session3)
-* The URL to clone this session locally using `git` is https://github.com/waldronbios2/session3.git
-    + Note: code is in the "vignettes" folder
 
 # Session N: title
 
@@ -20,6 +12,20 @@
 
 ## Lab
 
-**Learning Objectives**
+**Learning objectives**
 
-**Outline**
+1. perform and interpret logistic regression
+    + interpret logistic regression coefficients
+    + make predictions based on a logistic regression model
+2. perform and interpret likelihood ratio test
+
+**Questions**
+
+1. What is the mean fraction of women using birth control for each age group? Each education level? For women who do or don't want more children?
+     - Hint: look at the "data wrangling" cheat sheet functions `mutate`, `group_by`, and `summarize`
+2. Based on ```fit1```, write on paper the model for expected probability of using birth control.  Don't forget the logit function.
+3. Based on ```fit1```, what is the expected probability of an individual 25-29 years old, with high education, who wants more children, using birth control? Calculate it manually, and using `predict(fit1)`
+4. Based on ```fit1```: Relative to women under 25 who want to have children, what is the predicted increase in odds that a woman 40-49 years old who does _not_ want to have children will be taking birth control?
+5. Using a likelihood ratio test, is there evidence that a model with interactions improves on ```fit1``` (no interactions)?
+6. Which, if any, variables have the strongest interactions?
+7. Looking at the effect of age only, consider contrasts between *every pair* of age groups. Between which age groups is the contrast significant?
