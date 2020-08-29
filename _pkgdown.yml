@@ -1,0 +1,18 @@
+url: https://waldronbios2.github.io/templatesession/
+
+template:
+  params:
+    bootswatch: cosmo
+    ganalytics: UA-176789980-1
+
+navbar:
+  structure:
+    left:  [home, articles]
+    right: [github]
+
+articles:
+- text: "Lecture and lab notes"
+
+authors:
+  Levi Waldron:
+    href: https://waldronlab.io
