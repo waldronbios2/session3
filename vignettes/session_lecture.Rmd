@@ -1,5 +1,5 @@
 ---
-title: "Session 3: What this lecture is about"
+title: "Session 3: Regression coefficients and model matrices"
 author: "Levi Waldron"
 institute: "CUNY SPH Biostatistics 2"
 output:
@@ -17,8 +17,8 @@ output:
 ## Learning objectives
 
 1. Interpret main coefficients in logistic regression
-1. Interpret interaction terms in logistic regression
-2. Define and interpret model matrices for (generalized) linear models
+2. Interpret interaction terms in logistic regression
+3. Define and interpret model matrices for (generalized) linear models
 
 
 ## Outline

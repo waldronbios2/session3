@@ -2,13 +2,21 @@
   [![Actions Status](https://github.com/waldronbios2/session3/workflows/Render%20and%20Deploy%20pkgdown%20Website/badge.svg)](https://github.com/waldronbios2/session3/actions)
   <!-- badges: end -->
 
-# Session N: title
+# Session 3: Regression coefficients and model matrices
 
 ## Lecture
 
 **Learning Objectives**
 
+1. Interpret main coefficients in logistic regression
+2. Interpret interaction terms in logistic regression
+3. Define and interpret model matrices for (generalized) linear models
+
 **Outline**
+
+1. Review of GLM
+2. Interpretation of logistic regression coefficients
+3. Introduction to model matrices
 
 ## Lab
 
@@ -19,7 +27,7 @@
     + make predictions based on a logistic regression model
 2. perform and interpret likelihood ratio test
 
-**Questions**
+**Exercises**
 
 1. What is the mean fraction of women using birth control for each age group? Each education level? For women who do or don't want more children?
      - Hint: look at the "data wrangling" cheat sheet functions `mutate`, `group_by`, and `summarize`
