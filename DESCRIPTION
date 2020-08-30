@@ -6,7 +6,9 @@ Author: Levi Waldron
 Maintainer: Levi Waldron <lwaldron.research@gmail.com>
 Description: Description of this session
 Imports:
-    tidyverse
+    tidyverse,
+    RColorBrewer,
+    multcomp
 Suggests:
     pkgdown,
     knitr,

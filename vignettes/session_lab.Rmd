@@ -60,6 +60,7 @@ What is the mean fraction of women using birth control for each age group? Each 
 First create a new column containing the fraction using contraception:
 
 ```{r}
+library(dplyr)
 cuse2 <- mutate(cuse, fracusing = using / (using + notUsing))
 cuse2
 ```
