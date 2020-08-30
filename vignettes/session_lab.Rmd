@@ -17,7 +17,7 @@ output:
     + make predictions based on a logistic regression model
 2. perform and interpret likelihood ratio test
 
-**Questions**
+**Exercises**
 
 1. What is the mean fraction of women using birth control for each age group? Each education level? For women who do or don't want more children?
      - Hint: look at the "data wrangling" cheat sheet functions `mutate`, `group_by`, and `summarize`
