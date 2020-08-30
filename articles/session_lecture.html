@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Session N: What this lecture is about • sessionN</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<title>Session 3: Regression coefficients and model matrices • session3</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Session N: What this lecture is about">
-<meta property="og:description" content="sessionN">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Session 3: Regression coefficients and model matrices">
+<meta property="og:description" content="session3">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -36,30 +36,44 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">sessionN</a>
+        <a class="navbar-link" href="../index.html">session3</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Lecture and Lab
      
+    <span class="caret"></span>
   </a>
-</li>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../articles/index.html">Articles</a>
+      <a href="../articles/session_lecture.html">Lecture notes</a>
+    </li>
+    <li>
+      <a href="../articles/session_lecture.pdf">Lecture notes PDF</a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="../articles/session_lab.html">Lab materials</a>
+    </li>
+  </ul>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
+<li class="dropdown-header">
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/waldronbios2/session3/">
     <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/leviwaldron1">
+    <span class="fab fa fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -76,7 +90,7 @@
       </header><script src="session_lecture_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Session N: What this lecture is about</h1>
+      <h1 data-toc-skip>Session 3: Regression coefficients and model matrices</h1>
                         <h4 class="author">Levi Waldron</h4>
             
       
@@ -94,29 +108,860 @@
 <h2 class="hasAnchor">
 <a href="#learning-objectives" class="anchor"></a>Learning objectives</h2>
 <ol style="list-style-type: decimal">
-<li>learning objective 1</li>
+<li>Interpret main coefficients in logistic regression</li>
+<li>Interpret interaction terms in logistic regression</li>
+<li>Define and interpret model matrices for (generalized) linear models</li>
 </ol>
 </div>
 <div id="outline" class="section level2">
 <h2 class="hasAnchor">
 <a href="#outline" class="anchor"></a>Outline</h2>
 <ol style="list-style-type: decimal">
-<li>topic 1</li>
+<li>Review of GLM</li>
+<li>Interpretation of logistic regression coefficients</li>
+<li>Introduction to model matrices</li>
 </ol>
 </div>
 </div>
-<div id="section-1-title" class="section level1">
+<div id="glm-review" class="section level1">
 <h1 class="hasAnchor">
-<a href="#section-1-title" class="anchor"></a>Section 1 title</h1>
-<div id="slide-1-title" class="section level2">
+<a href="#glm-review" class="anchor"></a>GLM review</h1>
+<div id="components-of-glm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#slide-1-title" class="anchor"></a>Slide 1 title</h2>
-<p>Slide 1 content</p>
+<a href="#components-of-glm" class="anchor"></a>Components of GLM</h2>
+<ul>
+<li>
+<strong>Random component</strong> specifies the conditional distribution for the response variable
+<ul>
+<li>doesn’t have to be normal</li>
+<li>can be any distribution in the “exponential” family of distributions</li>
+</ul>
+</li>
+<li>
+<strong>Systematic component</strong> specifies linear function of predictors (linear predictor)</li>
+<li>
+<strong>Link</strong> [denoted by g(.)] specifies the relationship between the expected value of the random component and the systematic component
+<ul>
+<li>can be linear or nonlinear</li>
+</ul>
+</li>
+</ul>
 </div>
-<div id="slide-2-title" class="section level2">
+<div id="logistic-regression-as-glm" class="section level2">
 <h2 class="hasAnchor">
-<a href="#slide-2-title" class="anchor"></a>Slide 2 title</h2>
-<p>Slide 2 content</p>
+<a href="#logistic-regression-as-glm" class="anchor"></a>Logistic Regression as GLM</h2>
+<ul>
+<li><p><strong>The model</strong>: <span class="math display">\[
+Logit(P(x)) = log \left( \frac{P(x)}{1-P(x)} \right) = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi}
+\]</span></p></li>
+<li><p><strong>Random component</strong>: <span class="math inline">\(y_i\)</span> follows a Binomial distribution (outcome is a binary variable)</p></li>
+<li><p><strong>Systematic component</strong>: linear predictor <span class="math display">\[
+\beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi}
+\]</span></p></li>
+<li><p><strong>Link function</strong>: <em>logit</em> (log of the odds that the event occurs)</p></li>
+</ul>
+<p><span class="math display">\[
+g(P(x)) = logit(P(x)) = log\left( \frac{P(x)}{1-P(x)} \right)
+\]</span></p>
+<p><span class="math display">\[
+P(x) = g^{-1}\left( \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi}
+ \right)
+\]</span></p>
+</div>
+<div id="additive-vs--multiplicative-models" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additive-vs--multiplicative-models" class="anchor"></a>Additive vs. Multiplicative models</h2>
+<ul>
+<li>Linear regression is an <em>additive</em> model
+<ul>
+<li>
+<em>e.g.</em> for two binary variables <span class="math inline">\(\beta_1 = 1.5\)</span>, <span class="math inline">\(\beta_2 = 1.5\)</span>.</li>
+<li>If <span class="math inline">\(x_1=1\)</span> and <span class="math inline">\(x_2=1\)</span>, this adds 3.0 to <span class="math inline">\(E(y|x)\)</span>
+</li>
+</ul>
+</li>
+<li>Logistic regression is a <em>multiplicative</em> model
+<ul>
+<li>If <span class="math inline">\(x_1=1\)</span> and <span class="math inline">\(x_2=1\)</span>, this adds 3.0 to <span class="math inline">\(log(\frac{P}{1-P})\)</span>
+</li>
+<li>Odds-ratio <span class="math inline">\(\frac{P}{1-P}\)</span> increases 20-fold: <span class="math inline">\(exp(1.5+1.5)\)</span> or <span class="math inline">\(exp(1.5) * exp(1.5)\)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="motivating-example-contraceptive-use-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#motivating-example-contraceptive-use-data" class="anchor"></a>Motivating example: contraceptive use data</h2>
+<p>From <a href="http://data.princeton.edu/wws509/datasets/#cuse" class="uri">http://data.princeton.edu/wws509/datasets/#cuse</a></p>
+<pre><code>##      age             education          wantsMore            notUsing     
+##  Length:16          Length:16          Length:16          Min.   :  8.00  
+##  Class :character   Class :character   Class :character   1st Qu.: 31.00  
+##  Mode  :character   Mode  :character   Mode  :character   Median : 56.50  
+##                                                           Mean   : 68.75  
+##                                                           3rd Qu.: 85.75  
+##                                                           Max.   :212.00  
+##      using      
+##  Min.   : 4.00  
+##  1st Qu.: 9.50  
+##  Median :29.00  
+##  Mean   :31.69  
+##  3rd Qu.:49.00  
+##  Max.   :80.00</code></pre>
+</div>
+<div id="motivating-example-contraceptive-use-data-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#motivating-example-contraceptive-use-data-1" class="anchor"></a>Motivating example: contraceptive use data</h2>
+<p>Univariate regression to “wants more children” only:</p>
+
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">wantsMore</span>,
+           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))</pre></body></html></div>
+<!-- html table generated in R 4.0.2 by xtable 1.8-4 package -->
+<!-- Sun Aug 30 11:09:38 2020 -->
+<table class="table">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+z value
+</th>
+<th>
+Pr(&gt;|z|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-0.1864
+</td>
+<td align="right">
+0.0797
+</td>
+<td align="right">
+-2.34
+</td>
+<td align="right">
+0.0194
+</td>
+</tr>
+<tr>
+<td align="right">
+wantsMoreyes
+</td>
+<td align="right">
+-1.0486
+</td>
+<td align="right">
+0.1107
+</td>
+<td align="right">
+-9.48
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
+<p>
+</p>
+<ul>
+<li>Interpretation of this table:
+<ul>
+<li>Coefficients for <strong>(Intercept)</strong> and <strong>dummy variables</strong>
+</li>
+<li>Coefficients are normally distributed when assumptions are correct</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="interpretation-of-coefficients" class="section level2">
+<h2 class="hasAnchor">
+<a href="#interpretation-of-coefficients" class="anchor"></a>Interpretation of coefficients</h2>
+<div class="figure">
+<img src="session_lecture_files/figure-html/main_coef-1.png" alt="Diagram of the estimated coefficients in the GLM. The green arrow indicates the Intercept term, which goes from zero to the mean of the reference group (here the 'wantsMore = no' samples). The orange arrow indicates the difference in log-odds of the yes group minus the no group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting." width="700"><p class="caption">
+Diagram of the estimated coefficients in the GLM. The green arrow indicates the Intercept term, which goes from zero to the mean of the reference group (here the ‘wantsMore = no’ samples). The orange arrow indicates the difference in log-odds of the yes group minus the no group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting.
+</p>
+</div>
+</div>
+<div id="regression-on-age" class="section level2">
+<h2 class="hasAnchor">
+<a href="#regression-on-age" class="anchor"></a>Regression on <strong>age</strong>
+</h2>
+<p>There are four age groups:</p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span>,
+           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))</pre></body></html></div>
+<!-- html table generated in R 4.0.2 by xtable 1.8-4 package -->
+<!-- Sun Aug 30 11:09:38 2020 -->
+<table class="table">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+z value
+</th>
+<th>
+Pr(&gt;|z|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-1.5072
+</td>
+<td align="right">
+0.1303
+</td>
+<td align="right">
+-11.57
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age25-29
+</td>
+<td align="right">
+0.4607
+</td>
+<td align="right">
+0.1727
+</td>
+<td align="right">
+2.67
+</td>
+<td align="right">
+0.0077
+</td>
+</tr>
+<tr>
+<td align="right">
+age30-39
+</td>
+<td align="right">
+1.0483
+</td>
+<td align="right">
+0.1544
+</td>
+<td align="right">
+6.79
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age40-49
+</td>
+<td align="right">
+1.4246
+</td>
+<td align="right">
+0.1940
+</td>
+<td align="right">
+7.35
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
+<ul>
+<li>Interpretation of the dummy variables <code>age25-29</code>, <code>age30-39</code>, <code>age40-49</code>
+</li>
+</ul>
+</div>
+<div id="regression-with-multiple-predictors---model-formulae" class="section level2">
+<h2 class="hasAnchor">
+<a href="#regression-with-multiple-predictors---model-formulae" class="anchor"></a>Regression with multiple predictors - model formulae:</h2>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="26%">
+<col width="57%">
+</colgroup>
+<thead><tr class="header">
+<th>symbol</th>
+<th>example</th>
+<th>meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>+</td>
+<td>+ x</td>
+<td>include this variable</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>- x</td>
+<td>delete this variable</td>
+</tr>
+<tr class="odd">
+<td>:</td>
+<td>x : z</td>
+<td>include the interaction</td>
+</tr>
+<tr class="even">
+<td>*</td>
+<td>x * z</td>
+<td>include these variables and their interactions</td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td>(u + v + w)^3</td>
+<td>include these variables and all interactions up to three way</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>-1</td>
+<td>intercept: delete the intercept</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="regression-on-age-and-wantsmore" class="section level2">
+<h2 class="hasAnchor">
+<a href="#regression-on-age-and-wantsmore" class="anchor"></a>Regression on <strong>age</strong> and <strong>wantsMore</strong>
+</h2>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span> + <span class="no">wantsMore</span>,
+           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))</pre></body></html></div>
+<!-- html table generated in R 4.0.2 by xtable 1.8-4 package -->
+<!-- Sun Aug 30 11:09:38 2020 -->
+<table class="table">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+z value
+</th>
+<th>
+Pr(&gt;|z|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-0.8698
+</td>
+<td align="right">
+0.1571
+</td>
+<td align="right">
+-5.54
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age25-29
+</td>
+<td align="right">
+0.3678
+</td>
+<td align="right">
+0.1754
+</td>
+<td align="right">
+2.10
+</td>
+<td align="right">
+0.0360
+</td>
+</tr>
+<tr>
+<td align="right">
+age30-39
+</td>
+<td align="right">
+0.8078
+</td>
+<td align="right">
+0.1598
+</td>
+<td align="right">
+5.06
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age40-49
+</td>
+<td align="right">
+1.0226
+</td>
+<td align="right">
+0.2039
+</td>
+<td align="right">
+5.01
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+wantsMoreyes
+</td>
+<td align="right">
+-0.8241
+</td>
+<td align="right">
+0.1171
+</td>
+<td align="right">
+-7.04
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+</table>
+</div>
+<div id="interaction-effect-modification" class="section level2">
+<h2 class="hasAnchor">
+<a href="#interaction-effect-modification" class="anchor"></a>Interaction / Effect Modification</h2>
+<ul>
+<li>What if we want to know whether the effect of age is modified by whether the woman wants more children or not?</li>
+</ul>
+<p>Interaction is modeled as the product of two covariates: <span class="math display">\[
+E[y|x] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1*x_2
+\]</span></p>
+</div>
+<div id="interaction-effect-modification-contd" class="section level2">
+<h2 class="hasAnchor">
+<a href="#interaction-effect-modification-contd" class="anchor"></a>Interaction / Effect Modification (cont’d)</h2>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span> * <span class="no">wantsMore</span>,
+           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))</pre></body></html></div>
+<!-- html table generated in R 4.0.2 by xtable 1.8-4 package -->
+<!-- Sun Aug 30 11:09:38 2020 -->
+<table class="table">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+z value
+</th>
+<th>
+Pr(&gt;|z|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+-1.4553
+</td>
+<td align="right">
+0.2968
+</td>
+<td align="right">
+-4.90
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age25-29
+</td>
+<td align="right">
+0.6354
+</td>
+<td align="right">
+0.3564
+</td>
+<td align="right">
+1.78
+</td>
+<td align="right">
+0.0746
+</td>
+</tr>
+<tr>
+<td align="right">
+age30-39
+</td>
+<td align="right">
+1.5411
+</td>
+<td align="right">
+0.3183
+</td>
+<td align="right">
+4.84
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+age40-49
+</td>
+<td align="right">
+1.7643
+</td>
+<td align="right">
+0.3435
+</td>
+<td align="right">
+5.14
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+wantsMoreyes
+</td>
+<td align="right">
+-0.0640
+</td>
+<td align="right">
+0.3303
+</td>
+<td align="right">
+-0.19
+</td>
+<td align="right">
+0.8464
+</td>
+</tr>
+<tr>
+<td align="right">
+age25-29:wantsMoreyes
+</td>
+<td align="right">
+-0.2672
+</td>
+<td align="right">
+0.4091
+</td>
+<td align="right">
+-0.65
+</td>
+<td align="right">
+0.5137
+</td>
+</tr>
+<tr>
+<td align="right">
+age30-39:wantsMoreyes
+</td>
+<td align="right">
+-1.0905
+</td>
+<td align="right">
+0.3733
+</td>
+<td align="right">
+-2.92
+</td>
+<td align="right">
+0.0035
+</td>
+</tr>
+<tr>
+<td align="right">
+age40-49:wantsMoreyes
+</td>
+<td align="right">
+-1.3671
+</td>
+<td align="right">
+0.4834
+</td>
+<td align="right">
+-2.83
+</td>
+<td align="right">
+0.0047
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="the-design-matrix" class="section level1">
+<h1 class="hasAnchor">
+<a href="#the-design-matrix" class="anchor"></a>The Design Matrix</h1>
+<div id="what-is-the-design-matrix-and-why" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-is-the-design-matrix-and-why" class="anchor"></a>What is the design matrix, and why?</h2>
+<ul>
+<li>
+<strong>What?</strong> The design matrix is the most generic, flexible way to specify them</li>
+<li>
+<strong>Why?</strong> There are multiple possible and reasonable regression models for a given study design.</li>
+</ul>
+</div>
+<div id="matrix-notation-for-the-multiple-linear-regression-model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#matrix-notation-for-the-multiple-linear-regression-model" class="anchor"></a>Matrix notation for the multiple linear regression model</h2>
+<p><span class="math display">\[
+\,
+\begin{pmatrix}
+Y_1\\
+Y_2\\
+\vdots\\
+Y_N
+\end{pmatrix} = 
+\begin{pmatrix}
+1&amp;x_1\\
+1&amp;x_2\\
+\vdots\\
+1&amp;x_N
+\end{pmatrix}
+\begin{pmatrix}
+\beta_0\\
+\beta_1
+\end{pmatrix} +
+\begin{pmatrix}
+\varepsilon_1\\
+\varepsilon_2\\
+\vdots\\
+\varepsilon_N
+\end{pmatrix}
+\]</span></p>
+<p>or simply:</p>
+<p><span class="math display">\[
+\mathbf{Y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}
+\]</span></p>
+<ul>
+<li>The design matrix is <span class="math inline">\(\mathbf{X}\)</span>
+<ul>
+<li>which the computer will take as a given when solving for <span class="math inline">\(\boldsymbol{\beta}\)</span> by minimizing the sum of squares of residuals <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>, or maximizing likelihood.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="choice-of-design-matrix" class="section level2">
+<h2 class="hasAnchor">
+<a href="#choice-of-design-matrix" class="anchor"></a>Choice of design matrix</h2>
+<ul>
+<li>The model formula encodes a default model matrix, e.g.:</li>
+</ul>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>( <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>) )
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">group</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) group2
+## 1           1      0
+## 2           1      0
+## 3           1      1
+## 4           1      1
+## attr(,"assign")
+## [1] 0 1
+## attr(,"contrasts")
+## attr(,"contrasts")$group
+## [1] "contr.treatment"</code></pre>
+</div>
+<div id="choice-of-design-matrix-contd" class="section level2">
+<h2 class="hasAnchor">
+<a href="#choice-of-design-matrix-contd" class="anchor"></a>Choice of design matrix (cont’d)</h2>
+<p>What if we forgot to code group as a factor?</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">group</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) group
+## 1           1     1
+## 2           1     1
+## 3           1     2
+## 4           1     2
+## attr(,"assign")
+## [1] 0 1</code></pre>
+</div>
+<div id="more-groups-still-one-variable" class="section level2">
+<h2 class="hasAnchor">
+<a href="#more-groups-still-one-variable" class="anchor"></a>More groups, still one variable</h2>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>))
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">group</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) group2 group3
+## 1           1      0      0
+## 2           1      0      0
+## 3           1      1      0
+## 4           1      1      0
+## 5           1      0      1
+## 6           1      0      1
+## attr(,"assign")
+## [1] 0 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$group
+## [1] "contr.treatment"</code></pre>
+</div>
+<div id="changing-the-baseline-group" class="section level2">
+<h2 class="hasAnchor">
+<a href="#changing-the-baseline-group" class="anchor"></a>Changing the baseline group</h2>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>))
+<span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="no">group</span>, <span class="kw">ref</span><span class="kw">=</span><span class="fl">3</span>)
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">group</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) group1 group2
+## 1           1      1      0
+## 2           1      1      0
+## 3           1      0      1
+## 4           1      0      1
+## 5           1      0      0
+## 6           1      0      0
+## attr(,"assign")
+## [1] 0 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$group
+## [1] "contr.treatment"</code></pre>
+</div>
+<div id="more-than-one-variable" class="section level2">
+<h2 class="hasAnchor">
+<a href="#more-than-one-variable" class="anchor"></a>More than one variable</h2>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">agegroup</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>))
+<span class="no">wantsMore</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span>,<span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span>))
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">agegroup</span> + <span class="no">wantsMore</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) agegroup2 wantsMorey
+## 1           1         0          1
+## 2           1         0          1
+## 3           1         0          0
+## 4           1         0          0
+## 5           1         1          1
+## 6           1         1          1
+## 7           1         1          0
+## 8           1         1          0
+## attr(,"assign")
+## [1] 0 1 2
+## attr(,"contrasts")
+## attr(,"contrasts")$agegroup
+## [1] "contr.treatment"
+## 
+## attr(,"contrasts")$wantsMore
+## [1] "contr.treatment"</code></pre>
+</div>
+<div id="with-an-interaction-term" class="section level2">
+<h2 class="hasAnchor">
+<a href="#with-an-interaction-term" class="anchor"></a>With an interaction term</h2>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(~ <span class="no">agegroup</span> + <span class="no">wantsMore</span> + <span class="no">agegroup</span>:<span class="no">wantsMore</span>)</pre></body></html></div>
+<pre><code>##   (Intercept) agegroup2 wantsMorey agegroup2:wantsMorey
+## 1           1         0          1                    0
+## 2           1         0          1                    0
+## 3           1         0          0                    0
+## 4           1         0          0                    0
+## 5           1         1          1                    1
+## 6           1         1          1                    1
+## 7           1         1          0                    0
+## 8           1         1          0                    0
+## attr(,"assign")
+## [1] 0 1 2 3
+## attr(,"contrasts")
+## attr(,"contrasts")$agegroup
+## [1] "contr.treatment"
+## 
+## attr(,"contrasts")$wantsMore
+## [1] "contr.treatment"</code></pre>
+</div>
+<div id="design-matrix-to-contrast-what-we-want" class="section level2">
+<h2 class="hasAnchor">
+<a href="#design-matrix-to-contrast-what-we-want" class="anchor"></a>Design matrix to contrast what we want</h2>
+<ul>
+<li>Contraceptive use example
+<ul>
+<li>Is the effect of wanting more children different for 40-49 year-olds than for &lt;25 year-olds is answered by the term <code>age40-49:wantsMoreyes</code> in a model with interaction terms:</li>
+</ul>
+</li>
+</ul>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">fitX</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span> * <span class="no">wantsMore</span>,
+           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">fitX</span>)</pre></body></html></div>
+<pre><code>## 
+## Call:
+## glm(formula = cbind(using, notUsing) ~ age * wantsMore, family = binomial("logit"), 
+##     data = cuse)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.67001  -0.85288   0.02621   0.72300   2.18925  
+## 
+## Coefficients:
+##                       Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)            -1.4553     0.2968  -4.903 9.43e-07 ***
+## age25-29                0.6354     0.3564   1.783  0.07463 .  
+## age30-39                1.5412     0.3183   4.842 1.29e-06 ***
+## age40-49                1.7643     0.3435   5.136 2.80e-07 ***
+## wantsMoreyes           -0.0640     0.3303  -0.194  0.84637    
+## age25-29:wantsMoreyes  -0.2672     0.4091  -0.653  0.51366    
+## age30-39:wantsMoreyes  -1.0905     0.3733  -2.921  0.00349 ** 
+## age40-49:wantsMoreyes  -1.3672     0.4834  -2.828  0.00468 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 165.772  on 15  degrees of freedom
+## Residual deviance:  20.099  on  8  degrees of freedom
+## AIC: 107.61
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+<div id="design-matrix-to-contrast-what-we-want-contd" class="section level2">
+<h2 class="hasAnchor">
+<a href="#design-matrix-to-contrast-what-we-want-contd" class="anchor"></a>Design matrix to contrast what we want (cont’d)</h2>
+<ul>
+<li>What if we want to ask this question for 40-49 year-olds vs. 30-39 year-olds?</li>
+</ul>
+<p>The desired contrast is:</p>
+<p><code>age40-49:wantsMoreyes - age30-39:wantsMoreyes</code></p>
+<p>There are many ways to construct this design, one is with <code><a href="https://rdrr.io/pkg/multcomp/man">library(multcomp)</a></code>:</p>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">fitX</span>))</pre></body></html></div>
+<pre><code>## [1] "(Intercept)"           "age25-29"              "age30-39"             
+## [4] "age40-49"              "wantsMoreyes"          "age25-29:wantsMoreyes"
+## [7] "age30-39:wantsMoreyes" "age40-49:wantsMoreyes"</code></pre>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">contmat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,-<span class="fl">1</span>,<span class="fl">1</span>), <span class="fl">1</span>)
+<span class="no">new.interaction</span> <span class="kw">&lt;-</span> <span class="kw pkg">multcomp</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="no">fitX</span>, <span class="kw">linfct</span><span class="kw">=</span><span class="no">contmat</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">new.interaction</span>)</pre></body></html></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: glm(formula = cbind(using, notUsing) ~ age * wantsMore, family = binomial("logit"), 
+##     data = cuse)
+## 
+## Linear Hypotheses:
+##        Estimate Std. Error z value Pr(&gt;|z|)
+## 1 == 0  -0.2767     0.3935  -0.703    0.482
+## (Adjusted p values reported -- single-step method)</code></pre>
 </div>
 </div>
   </div>
