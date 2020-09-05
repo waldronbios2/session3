@@ -1,5 +1,5 @@
   <!-- badges: start -->
-  [![Actions Status](https://github.com/waldronbios2/session3/workflows/Render%20and%20Deploy%20pkgdown%20Website/badge.svg)](https://github.com/waldronbios2/session3/actions)
+  [![Actions Status](https://github.com/waldronbios2/session3/workflows/build/badge.svg)](https://github.com/waldronbios2/session3/actions)
   <!-- badges: end -->
 
 # Session 3: Regression coefficients and model matrices
