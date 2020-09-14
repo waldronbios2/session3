@@ -2,21 +2,40 @@
 title: "Session 3: Regression coefficients and model matrices"
 author: "Levi Waldron"
 institute: "CUNY SPH Biostatistics 2"
+clean: false
 output:
+  slidy_presentation: default
+  html_document:
+    df_print: paged
+    number_sections: yes
+    theme: lumen
+    toc: yes
+  pdf_document:
+    toc: yes
   beamer_presentation:
     colortheme: dove
     df_print: paged
     fonttheme: structurebold
     slide_level: 2
     theme: Hannover
-  slidy_presentation: default
+  md_document:
+    preserve_yaml: false
+always_allow_html: true
 ---
+
+```{r, echo=FALSE}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(kableExtra)
+  library(xtable)
+})
+```
 
 # Learning objectives and outline
 
 ## Learning objectives
 
-1. Interpret main coefficients in logistic regression
+1. Interpret main effect coefficients in logistic regression
 2. Interpret interaction terms in logistic regression
 3. Define and interpret model matrices for (generalized) linear models
 
@@ -42,7 +61,10 @@ output:
 
 * **The model**: 
 $$
-Logit(P(x)) = log \left( \frac{P(x)}{1-P(x)} \right) = \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi}
+\begin{aligned}
+Logit(P(x)) &= log \left( \frac{P(x)}{1-P(x)} \right) \notag\\
+ &= \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_{pi} \notag
+\end{aligned}
 $$
 
 * **Random component**: $y_i$ follows a Binomial distribution (outcome is a binary variable)
@@ -63,47 +85,53 @@ P(x) = g^{-1}\left( \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_
  \right)
 $$
 
-## Additive vs. Multiplicative models
+## Additive vs. multiplicative models
 
-* Linear regression is an _additive_ model
+1. Linear regression is an _additive_ model
     + _e.g._ for two binary variables $\beta_1 = 1.5$, $\beta_2 = 1.5$.
     + If $x_1=1$ and $x_2=1$, this adds 3.0 to $E(y|x)$
-* Logistic regression is a _multiplicative_ model
+2. Logistic regression is a _multiplicative_ model
+    + It is additive on _log_-odds scale
     + If $x_1=1$ and $x_2=1$, this adds 3.0 to $log(\frac{P}{1-P})$
     + Odds-ratio $\frac{P}{1-P}$ increases 20-fold: $exp(1.5+1.5)$ or $exp(1.5) * exp(1.5)$
+
+# Interpretation of main effects and interactions in logistic regression
 
 ## Motivating example: contraceptive use data
 
 From http://data.princeton.edu/wws509/datasets/#cuse
 
-```{r, echo=FALSE}
+\tiny
+```{r readcuse}
 cuse <- read.table("http://data.princeton.edu/wws509/datasets/cuse.dat", header=TRUE)
 summary(cuse)
 ```
 
-## Motivating example: contraceptive use data
+## Univariate regression on "wants more children"
 
-Univariate regression to "wants more children" only:
+<p></p>
 
 \tiny
 ```{r}
 fit <- glm(cbind(using, notUsing) ~ wantsMore, 
            data=cuse, family=binomial("logit"))
+summary(fit)
 ```
 
-```{r, results="asis", echo=FALSE, message=FALSE}
-fit.table <- xtable::xtable(fit, label=NULL)
-print(fit.table, type="html")
+## Interpretation of "wants more children" table
+
+* Coefficients for **(Intercept)** and **dummy variables**
+* Coefficients are normally distributed when assumptions are correct
+
+## Interpretation of "wants more children" coefficients
+
+```{r, echo=FALSE}
+## Colorblind-friendly palette from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
+cbbPalette <- c(black="#000000", orange="#E69F00", blue="#56B4E9", green="#009E73", yellow="#F0E442", darkblue="#0072B2", salmon="#D55E00", fuscia="#CC79A7")
 ```
-<p></p>
-* Interpretation of this table:
-    * Coefficients for **(Intercept)** and **dummy variables**
-    * Coefficients are normally distributed when assumptions are correct
 
-## Interpretation of coefficients
-
-
-```{r main_coef, fig.cap="Diagram of the estimated coefficients in the GLM. The green arrow indicates the Intercept term, which goes from zero to the mean of the reference group (here the 'wantsMore = no' samples). The orange arrow indicates the difference in log-odds of the yes group minus the no group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting.",echo=FALSE}
+\tiny
+```{r main_coef, fig.cap="Diagram of the estimated coefficients in the GLM. The yellow arrow indicates the Intercept term, which goes from zero to the mean of the reference group (here the 'wantsMore = no' samples). The blue arrow indicates the difference in log-odds of the yes group minus the no group, which is negative in this example. The circles show the individual samples, jittered horizontally to avoid overplotting.", echo=FALSE, fig.height=5}
 logit <- function(P) log(P/(1-P))
 cuse$frac = logit(cuse$using / (cuse$using + cuse$notUsing))
 set.seed(1) #same jitter in stripchart
@@ -114,32 +142,30 @@ stripchart(split(cuse$frac, cuse$wantsMore),
 coefs <- coef(fit)##[c("(Intercept)", "wantsMoreyes")]
 a <- -0.15
 lgth <- .1
-library(RColorBrewer)
-cols <- brewer.pal(3,"Dark2")
 abline(h=0)
-arrows(1+a,0,1+a,coefs[1],lwd=3,col=cols[1],length=lgth)
-abline(h=coefs[1],col=cols[1])
-arrows(2+a,coefs[1],2+a,coefs[1]+coefs[2],lwd=3,col=cols[2],length=lgth)
-abline(h=coefs[1]+coefs[2],col=cols[2])
-legend("topright",names(coefs),fill=cols,cex=.75,bg="white")
+arrows(1+a,0,1+a,coefs[1],lwd=3,col=cbbPalette["yellow"],length=lgth)
+abline(h=coefs[1],col=cbbPalette["yellow"])
+arrows(2+a,coefs[1],2+a,coefs[1]+coefs[2],lwd=3,col=cbbPalette["blue"],length=lgth)
+abline(h=coefs[1]+coefs[2],col=cbbPalette["blue"])
+legend("topright",names(coefs),fill=cbbPalette[c("yellow", "blue")],cex=.75,bg="white")
 ```
 
 ## Regression on **age**
 
-There are four age groups:
+* Four age groups
+    - three dummy variables `age25-29`, `age30-39`, `age40-49`
+    - how to interpret them?
+
+## Regression on **age**
+
+\tiny
 ```{r}
 fit <- glm(cbind(using, notUsing) ~ age, 
            data=cuse, family=binomial("logit"))
+summary(fit)
 ```
 
-```{r, results="asis", echo=FALSE, message=FALSE}
-fit.table <- xtable::xtable(fit, label=NULL)
-print(fit.table, type="html")
-```
-
-- Interpretation of the dummy variables `age25-29`, `age30-39`, `age40-49`
-
-## Regression with multiple predictors - model formulae:
+## Recall model formulae
 
 symbol  | example | meaning
 ------- | ------------ | --------------------------  
@@ -156,10 +182,10 @@ symbol  | example | meaning
 fit <- glm(cbind(using, notUsing) ~ age + wantsMore, 
            data=cuse, family=binomial("logit"))
 ```
-
-```{r, results="asis", echo=FALSE, message=FALSE}
-fit.table <- xtable::xtable(fit, label=NULL)
-print(fit.table, type="html")
+```{r, echo=FALSE}
+xtable(fit) %>%
+  kbl(digits=2) %>%
+  kable_styling(bootstrap_options = "basic")
 ```
 
 ## Interaction / Effect Modification
@@ -171,24 +197,26 @@ $$
 E[y|x] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1*x_2
 $$
 
-## Interaction / Effect Modification (cont'd)
+## Interaction / Effect Modification (fit)
 
 ```{r}
 fit <- glm(cbind(using, notUsing) ~ age * wantsMore, 
            data=cuse, family=binomial("logit"))
 ```
-
-```{r, results="asis", echo=FALSE, message=FALSE}
-fit.table <- xtable::xtable(fit, label=NULL)
-print(fit.table, type="html")
+\tiny
+```{r, echo=FALSE}
+xtable(fit) %>%
+  kbl(digits=2) %>%
+  kable_styling(bootstrap_options = "basic")
 ```
+
 
 # The Design Matrix
 
 ## What is the design matrix, and why?
 
-* **What?** The design matrix is the most generic, flexible way to specify them
-* **Why?** There are multiple possible and reasonable regression models for a given study design.
+1. **What?** The design matrix is the most generic, flexible way to specify them
+2. **Why?** There are multiple possible and reasonable regression models for a given study design.
 
 
 ## Matrix notation for the multiple linear regression model
@@ -227,7 +255,7 @@ $$
 $$
 
 * The design matrix is $\mathbf{X}$
-    * which the computer will take as a given when solving for $\boldsymbol{\beta}$ by minimizing the sum of squares of residuals $\boldsymbol{\varepsilon}$, or maximizing likelihood.
+* the computer will take $\mathbf{X}$ as a given when solving for $\boldsymbol{\beta}$ by minimizing the sum of squares of residuals $\boldsymbol{\varepsilon}$, or maximizing likelihood.
     
 
 ## Choice of design matrix
@@ -264,7 +292,7 @@ model.matrix(~ group)
 
 ## More than one variable
 
-
+\tiny
 ```{r}
 agegroup <- factor(c(1,1,1,1,2,2,2,2))
 wantsMore <- factor(c("y","y","n","n","y","y","n","n"))
@@ -273,6 +301,7 @@ model.matrix(~ agegroup + wantsMore)
 
 ## With an interaction term
 
+\tiny
 ```{r}
 model.matrix(~ agegroup + wantsMore + agegroup:wantsMore)
 ```
@@ -280,14 +309,18 @@ model.matrix(~ agegroup + wantsMore + agegroup:wantsMore)
 ## Design matrix to contrast what we want
 
 - Contraceptive use example
-    - Is the effect of wanting more children different for 40-49 year-olds than for <25 year-olds is answered by the term `age40-49:wantsMoreyes` in a model with interaction terms:
+    - The effect of wanting more children different for 40-49 year-olds than for <25 year-olds is answered by the term `age40-49:wantsMoreyes` in this default model with interaction terms
 
 ```{r}
-fitX <- glm(cbind(using, notUsing) ~ age * wantsMore, 
+fit <- glm(cbind(using, notUsing) ~ age * wantsMore, 
            data=cuse, family=binomial("logit"))
-summary(fitX)
 ```
-
+\tiny
+```{r, echo=FALSE}
+xtable(fit) %>%
+  kbl(digits=2) %>%
+  kable_styling(bootstrap_options = "basic")
+```
 ## Design matrix to contrast what we want (cont'd)
 
 * What if we want to ask this question for 40-49 year-olds vs. 30-39 year-olds?
@@ -296,10 +329,21 @@ The desired contrast is:
 
 `age40-49:wantsMoreyes - age30-39:wantsMoreyes`
 
-There are many ways to construct this design, one is with `library(multcomp)`: 
+There are many ways to construct this design, one is with `library(multcomp)`
+
+## Design matrix constructed with library(multcomp)
+
+\tiny
 ```{r}
-names(coef(fitX))
+coef(fit)
 contmat <- matrix(c(0,0,0,0,0,0,-1,1), 1) 
-new.interaction <- multcomp::glht(fitX, linfct=contmat) 
+contmat
+new.interaction <- multcomp::glht(fit, linfct=contmat) 
 summary(new.interaction)
 ```
+
+## Summary
+
+1. Logistic regression coefficients are _linear_ in log-odds, _multiplicative_ in probability
+2. model formulae for easy setup of multiple regression
+3. design matrix for completely flexible setup of multiple regression
