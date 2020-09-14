@@ -1,6 +1,6 @@
-  <!-- badges: start -->
-  [![Actions Status](https://github.com/waldronbios2/session3/workflows/build/badge.svg)](https://github.com/waldronbios2/session3/actions)
-  <!-- badges: end -->
+<!-- badges: start -->
+[![Actions Status](https://github.com/waldronbios2/session3/workflows/build/badge.svg)](https://github.com/waldronbios2/session3/actions)
+<!-- badges: end -->
 
 # Session 3: Regression coefficients and model matrices
 
