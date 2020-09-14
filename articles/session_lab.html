@@ -132,15 +132,17 @@
 <a href="#load-and-explore-the-contraceptive-use-data" class="anchor"></a>Load and explore the contraceptive use data</h1>
 <p>Load the data from <a href="http://data.princeton.edu/wws509/datasets/#cuse" class="uri">http://data.princeton.edu/wws509/datasets/#cuse</a>. From this page: &gt; These data show the distribution of 1607 currently married and fecund women interviewed in the Fiji Fertility Survey, according to age, education, desire for more children and current use of contraception.</p>
 <p>See Session 2 for some discussion about reading this file. Here we just do it.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">readr</span>)
-<span class="no">cuse</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_table.html">read_table2</a></span>(<span class="st">"cuse.dat"</span>,
-    <span class="kw">col_types</span> <span class="kw">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span>(
-      <span class="kw">age</span> <span class="kw">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;25"</span>, <span class="st">"25-29"</span>, <span class="st">"30-39"</span>, <span class="st">"40-49"</span>)),
-      <span class="kw">education</span> <span class="kw">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"low"</span>, <span class="st">"high"</span>)),
-      <span class="kw">wantsMore</span> <span class="kw">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(<span class="kw">levels</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"no"</span>, <span class="st">"yes"</span>)),
-      <span class="kw">X6</span> <span class="kw">=</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span>()
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://readr.tidyverse.org">readr</a></span>)
+<span class="kw">cuse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_table.html">read_table2</a></span>(<span class="st">"cuse.dat"</span>,
+    col_types = <span class="fu"><a href="https://readr.tidyverse.org/reference/cols.html">cols</a></span>(
+      age = <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"&lt;25"</span>, <span class="st">"25-29"</span>, <span class="st">"30-39"</span>, <span class="st">"40-49"</span>)),
+      education = <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"low"</span>, <span class="st">"high"</span>)),
+      wantsMore = <span class="fu"><a href="https://readr.tidyverse.org/reference/parse_factor.html">col_factor</a></span>(levels = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"no"</span>, <span class="st">"yes"</span>)),
+      X6 = <span class="fu"><a href="https://readr.tidyverse.org/reference/col_skip.html">col_skip</a></span>()
     )
-  )</pre></body></html></div>
+  )
+</pre></div>
 <pre><code>## Warning: Missing column names filled in: 'X6' [6]</code></pre>
 <pre><code>## Warning: 16 parsing failures.
 ## row col  expected    actual       file
@@ -151,7 +153,9 @@
 ##   5  -- 6 columns 5 columns 'cuse.dat'
 ## ... ... ......... ......... ..........
 ## See problems(...) for more details.</code></pre>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">cuse</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">cuse</span>)
+</pre></div>
 <pre><code>##     age    education wantsMore    notUsing          using      
 ##  &lt;25  :4   low :8    no :8     Min.   :  8.00   Min.   : 4.00  
 ##  25-29:4   high:8    yes:8     1st Qu.: 31.00   1st Qu.: 9.50  
@@ -166,7 +170,9 @@
 <p>What is the mean fraction of women using birth control for each age group? Each education level? For women who do or don’t want more children? - Hint: look at the <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">“Data Transformation Cheatsheet”</a> functions <code>mutate</code>, <code>group_by</code>, and <code>summarize</code>. This is one of several very handy cheatsheets produced by RStudio, see <a href="https://rstudio.com/resources/cheatsheets/" class="uri">https://rstudio.com/resources/cheatsheets/</a> for a list.</p>
 <p><strong>Solution</strong></p>
 <p>First create a new column containing the fraction using contraception:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
+</pre></div>
 <pre><code>## 
 ## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
@@ -175,8 +181,10 @@
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">cuse2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="no">cuse</span>, <span class="kw">fracusing</span> <span class="kw">=</span> <span class="no">using</span> / (<span class="no">using</span> + <span class="no">notUsing</span>))
-<span class="no">cuse2</span></pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="kw">cuse2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cuse</span>, fracusing = <span class="kw">using</span> <span class="op">/</span> (<span class="kw">using</span> <span class="op">+</span> <span class="kw">notUsing</span>))
+<span class="kw">cuse2</span>
+</pre></div>
 <pre><code>## # A tibble: 16 x 6
 ##    age   education wantsMore notUsing using fracusing
 ##    &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -197,7 +205,9 @@
 ## 15 40-49 high      yes              8     8     0.5  
 ## 16 40-49 high      no              12    31     0.721</code></pre>
 <p>Now, group and summarize by age:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">cuse2</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">age</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">fracusing</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">cuse2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">age</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">fracusing</span>))
+</pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 2
 ##   age   `mean(fracusing)`
@@ -206,7 +216,9 @@
 ## 2 25-29             0.271
 ## 3 30-39             0.388
 ## 4 40-49             0.469</code></pre>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">cuse2</span></pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="kw">cuse2</span>
+</pre></div>
 <pre><code>## # A tibble: 16 x 6
 ##    age   education wantsMore notUsing using fracusing
 ##    &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -226,10 +238,12 @@
 ## 14 40-49 low       no              46    48     0.511
 ## 15 40-49 high      yes              8     8     0.5  
 ## 16 40-49 high      no              12    31     0.721</code></pre>
-<p>Here the <code><a href="https://dplyr.tidyverse.org/reference/reexports.html">%&gt;%</a></code> is called a “pipe”, and it sends the output of the previous function to the input of the next function. This could also have been done in one step:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="no">cuse</span>, <span class="kw">fracusing</span> <span class="kw">=</span> <span class="no">using</span> / (<span class="no">using</span> + <span class="no">notUsing</span>)) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">age</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="no">fracusing</span>))</pre></body></html></div>
+<p>Here the <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code> is called a “pipe”, and it sends the output of the previous function to the input of the next function. This could also have been done in one step:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cuse</span>, fracusing = <span class="kw">using</span> <span class="op">/</span> (<span class="kw">using</span> <span class="op">+</span> <span class="kw">notUsing</span>)) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="kw">age</span>) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(<span class="kw">fracusing</span>))
+</pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 2
 ##   age   `mean(fracusing)`
@@ -246,13 +260,17 @@
 <a href="#write-on-paper-the-model-for-expected-probability-of-using-birth-control" class="anchor"></a>Write on paper the model for expected probability of using birth control</h1>
 <p>Based on <code>fit1</code>, write on paper the model for expected probability of using birth control? Don’t forget the (inverse) logit function.</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">fit1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span> + <span class="no">education</span> + <span class="no">wantsMore</span>,
-  <span class="kw">data</span> <span class="kw">=</span> <span class="no">cuse</span>,
-  <span class="kw">family</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>)
-)</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="kw">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(
+  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span> <span class="op">+</span> <span class="kw">education</span> <span class="op">+</span> <span class="kw">wantsMore</span>,
+  data = <span class="kw">cuse</span>,
+  family = <span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>)
+)
+</pre></div>
 <p>I’m going to store the coefficients of <code>fit1</code> in a new variable <code>b</code> just to save typing when writing out the formula, and round to two decimal places:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">bcoef</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">fit1</span>), <span class="fl">2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="kw">bcoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit1</span>), <span class="fl">2</span>)
+</pre></div>
 <p>Here I’m going to take advantage of R Markdown’s support for LaTeX formulae to write out the fitted regression model. I also use the ` r 2+2 ` syntax (the result is 4) for putting results of R code inline, instead of writing out numbers of the coefficients. I never wrote the number “four”, but you’ll have to look at the .Rmd to see how I did that! Doing this in reports allows you to update them as input data changes, without having to manually re-enter or copy numbers.</p>
 <p><span class="math inline">\(P = \textit{logit}^{-1} \left(  -1.13 + 0.39 \times \textit{age25-29} +  0.91 \times \textit{age30-39} +  1.19 \times \textit{age40-49} +  NA \times \textit{educationlow} +  -0.83 \times \textit{wantsMoreyes}  \right)\)</span></p>
 <p><span class="math inline">\(\textit{logit}^{-1}(x) = \frac{1}{1+e^{-x}}\)</span></p>
@@ -263,23 +281,31 @@
 <p>Based on <code>fit1</code>, what is the expected probability of an individual 25-29 years old, with high education, who wants more children, using birth control? Calculate it manually, and using <code><a href="https://rdrr.io/r/stats/predict.html">predict(fit1)</a></code></p>
 <p><strong>Solution</strong></p>
 <p>This can be done using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function, using a new <code>data.frame</code> giving the values that you want to predict for:</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">invLogit</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) <span class="fl">1</span>/(<span class="fl">1</span>+<span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(-<span class="no">x</span>))
-<span class="no">newdata</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">age</span><span class="kw">=</span><span class="st">"25-29"</span>, <span class="kw">education</span><span class="kw">=</span><span class="st">"high"</span>, <span class="kw">wantsMore</span><span class="kw">=</span><span class="st">"yes"</span>)
-<span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">fit1</span>, <span class="kw">newdata</span><span class="kw">=</span><span class="no">newdata</span>) )</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="kw">invLogit</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">x</span>) <span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="op">-</span><span class="kw">x</span>))
+<span class="kw">newdata</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(age=<span class="st">"25-29"</span>, education=<span class="st">"high"</span>, wantsMore=<span class="st">"yes"</span>)
+<span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">fit1</span>, newdata=<span class="kw">newdata</span>) )
+</pre></div>
 <pre><code>##         1 
 ## 0.2223899</code></pre>
 <p>By default, <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> predicts on the original data, and taking a look, I noticed that the 7th value is the one we want to predict on:</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="no">fit1</span>)[<span class="fl">7</span>] )</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit">
+<span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">fit1</span>)[<span class="fl">7</span>] )
+</pre></div>
 <pre><code>##         7 
 ## 0.2223899</code></pre>
 <p>If we were really doing this manually, on paper, we would just calculate the linear predictor, then use the inverse logit function. Note that education=“high” is the reference group, so we don’t use it here:</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu">invLogit</span>( <span class="no">bcoef</span>[<span class="st">"(Intercept)"</span>] + <span class="no">bcoef</span>[<span class="st">"age25-29"</span>] + <span class="no">bcoef</span>[<span class="st">"wantsMoreyes"</span>] )</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="fu">invLogit</span>( <span class="kw">bcoef</span>[<span class="st">"(Intercept)"</span>] <span class="op">+</span> <span class="kw">bcoef</span>[<span class="st">"age25-29"</span>] <span class="op">+</span> <span class="kw">bcoef</span>[<span class="st">"wantsMoreyes"</span>] )
+</pre></div>
 <pre><code>## (Intercept) 
 ##   0.1722164</code></pre>
 <p>I don’t <em>really</em> care, but if the remnant “(Intercept)” name there were annoying me, I would assign this to a variable then get rid of that name:</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">invLogit</span>( <span class="no">bcoef</span>[<span class="st">"(Intercept)"</span>] + <span class="no">bcoef</span>[<span class="st">"age25-29"</span>] + <span class="no">bcoef</span>[<span class="st">"wantsMoreyes"</span>] )
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">res</span>) <span class="kw">&lt;-</span> <span class="kw">NULL</span>
-<span class="no">res</span></pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="kw">res</span> <span class="op">&lt;-</span> <span class="fu">invLogit</span>( <span class="kw">bcoef</span>[<span class="st">"(Intercept)"</span>] <span class="op">+</span> <span class="kw">bcoef</span>[<span class="st">"age25-29"</span>] <span class="op">+</span> <span class="kw">bcoef</span>[<span class="st">"wantsMoreyes"</span>] )
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">res</span>) <span class="op">&lt;-</span> <span class="kw">NULL</span>
+<span class="kw">res</span>
+</pre></div>
 <pre><code>## [1] 0.1722164</code></pre>
 </div>
 <div id="predicted-odds-ratio" class="section level1">
@@ -287,7 +313,9 @@
 <a href="#predicted-odds-ratio" class="anchor"></a>Predicted odds ratio</h1>
 <p>Based on <code>fit1</code>: Relative to women under 25 who want to have children, what is the predicted odds ratio for a woman 40-49 years old who does <em>not</em> want to have children will be taking birth control?</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>( <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">fit1</span>)[<span class="st">"age40-49"</span>] - <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">fit1</span>)[<span class="st">"wantsMoreyes"</span>])</pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>( <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit1</span>)[<span class="st">"age40-49"</span>] <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit1</span>)[<span class="st">"wantsMoreyes"</span>])
+</pre></div>
 <pre><code>## age40-49 
 ##  7.55488</code></pre>
 </div>
@@ -296,9 +324,11 @@
 <a href="#likelihood-ratio-test" class="anchor"></a>Likelihood Ratio Test</h1>
 <p>Using a likelihood ratio test, is there evidence that a model with interactions improves on <code>fit1</code> (no interactions)?</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="no">fit1.int</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span> * <span class="no">education</span> * <span class="no">wantsMore</span>,
-           <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span>(<span class="no">fit1</span>, <span class="no">fit1.int</span>, <span class="kw">test</span><span class="kw">=</span><span class="st">"LRT"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb32"><pre class="downlit">
+<span class="kw">fit1.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span> <span class="op">*</span> <span class="kw">education</span> <span class="op">*</span> <span class="kw">wantsMore</span>, 
+           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
+<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span>(<span class="kw">fit1</span>, <span class="kw">fit1.int</span>, test=<span class="st">"LRT"</span>)
+</pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: cbind(using, notUsing) ~ age + education + wantsMore
@@ -590,17 +620,21 @@ Akaike Inf. Crit.
 <h2 class="hasAnchor">
 <a href="#semi-manually" class="anchor"></a>semi-manually</h2>
 <p>First, I’ll do it manually, using the <code>multcomp</code> package and following an example from <code><a href="https://rdrr.io/pkg/multcomp/man/glht.html">?glht</a></code>. I’m not going to bother anymore creating pretty tables with <code>stargazer</code> though…</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"><span class="no">fit</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">using</span>, <span class="no">notUsing</span>) ~ <span class="no">age</span>, <span class="kw">data</span><span class="kw">=</span><span class="no">cuse</span>, <span class="kw">family</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="no">fit</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb34"><pre class="downlit">
+<span class="kw">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span>, data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit</span>)
+</pre></div>
 <pre><code>## (Intercept)    age25-29    age30-39    age40-49 
 ##  -1.5071591   0.4606758   1.0482932   1.4246380</code></pre>
-<div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="no">K</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="st">"25-29 - &lt;25"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>),
-           <span class="st">"30-39 - &lt;25"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>),
-           <span class="st">"40-49 - &lt;25"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>),
-           <span class="st">"30-39 - 25-29"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, -<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>),
-           <span class="st">"40-49 - 25-29"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, -<span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>),
-           <span class="st">"40-49 - 30-39"</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, -<span class="fl">1</span>, <span class="fl">1</span>))
-<span class="no">K</span></pre></body></html></div>
+<div class="sourceCode" id="cb36"><pre class="downlit">
+<span class="kw">K</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="st">"25-29 - &lt;25"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>),
+           <span class="st">"30-39 - &lt;25"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>),
+           <span class="st">"40-49 - &lt;25"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>),
+           <span class="st">"30-39 - 25-29"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>),
+           <span class="st">"40-49 - 25-29"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>),
+           <span class="st">"40-49 - 30-39"</span> = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>))
+<span class="kw">K</span>
+</pre></div>
 <pre><code>##               [,1] [,2] [,3] [,4]
 ## 25-29 - &lt;25     -1    1    0    0
 ## 30-39 - &lt;25     -1    0    1    0
@@ -608,83 +642,12 @@ Akaike Inf. Crit.
 ## 30-39 - 25-29    0   -1    1    0
 ## 40-49 - 25-29    0   -1    0    1
 ## 40-49 - 30-39    0    0   -1    1</code></pre>
-<div class="sourceCode" id="cb38"><html><body><pre class="r"><span class="no">fit.all.cont</span> <span class="kw">=</span> <span class="kw pkg">multcomp</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="no">fit</span>, <span class="kw">linfct</span><span class="kw">=</span><span class="no">K</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">fit.all.cont</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb38"><pre class="downlit">
+<span class="kw">fit.all.cont</span> <span class="op">=</span> <span class="kw">multcomp</span>::<span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="kw">fit</span>, linfct=<span class="kw">K</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">fit.all.cont</span>)
+</pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
-## 
-## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
-##     data = cuse)
-## 
-## Linear Hypotheses:
-##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## 25-29 - &lt;25 == 0     1.9678     0.2841   6.926   &lt;0.001 ***
-## 30-39 - &lt;25 == 0     2.5555     0.2734   9.347   &lt;0.001 ***
-## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***
-## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
-## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
-## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0983 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## (Adjusted p values reported -- single-step method)</code></pre>
-</div>
-<div id="using-tukey-contrasts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-tukey-contrasts" class="anchor"></a>Using Tukey contrasts</h2>
-<p>There is an easier way if you realize that these are the “Tukey” contrasts and use the <code>contrMat</code> function from the <code>multcomp</code> package:</p>
-<div class="sourceCode" id="cb40"><html><body><pre class="r"><span class="no">K2</span> <span class="kw">=</span> <span class="kw pkg">multcomp</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html">contrMat</a></span>(<span class="fl">1</span>:<span class="fl">4</span>, <span class="kw">type</span><span class="kw">=</span><span class="st">"Tukey"</span>)
-<span class="no">K2</span></pre></body></html></div>
-<pre><code>## 
-##   Multiple Comparisons of Means: Tukey Contrasts
-## 
-##        1  2  3 4
-## 2 - 1 -1  1  0 0
-## 3 - 1 -1  0  1 0
-## 4 - 1 -1  0  0 1
-## 3 - 2  0 -1  1 0
-## 4 - 2  0 -1  0 1
-## 4 - 3  0  0 -1 1</code></pre>
-<div class="sourceCode" id="cb42"><html><body><pre class="r"><span class="no">fit.all.cont2</span> <span class="kw">=</span> <span class="kw pkg">multcomp</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="no">fit</span>, <span class="kw">linfct</span><span class="kw">=</span><span class="no">K2</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">fit.all.cont2</span>)</pre></body></html></div>
-<pre><code>## 
-##   Simultaneous Tests for General Linear Hypotheses
-## 
-## Multiple Comparisons of Means: Tukey Contrasts
-## 
-## 
-## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
-##     data = cuse)
-## 
-## Linear Hypotheses:
-##            Estimate Std. Error z value Pr(&gt;|z|)    
-## 2 - 1 == 0   1.9678     0.2841   6.926   &lt;0.001 ***
-## 3 - 1 == 0   2.5555     0.2734   9.347   &lt;0.001 ***
-## 4 - 1 == 0   2.9318     0.2975   9.854   &lt;0.001 ***
-## 3 - 2 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
-## 4 - 2 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
-## 4 - 3 == 0   0.3763     0.1660   2.268   0.0983 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## (Adjusted p values reported -- single-step method)</code></pre>
-<p>We didn’t get the same informative coefficient names this time, but we could have just by renaming the rows in <code>K2</code>, for example:</p>
-<div class="sourceCode" id="cb44"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">K2</span>) <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="no">K</span>)
-<span class="no">K2</span></pre></body></html></div>
-<pre><code>## 
-##   Multiple Comparisons of Means: Tukey Contrasts
-## 
-##                1  2  3 4
-## 25-29 - &lt;25   -1  1  0 0
-## 30-39 - &lt;25   -1  0  1 0
-## 40-49 - &lt;25   -1  0  0 1
-## 30-39 - 25-29  0 -1  1 0
-## 40-49 - 25-29  0 -1  0 1
-## 40-49 - 30-39  0  0 -1 1</code></pre>
-<div class="sourceCode" id="cb46"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>( <span class="kw pkg">multcomp</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="no">fit</span>, <span class="kw">linfct</span><span class="kw">=</span><span class="no">K2</span>) )</pre></body></html></div>
-<pre><code>## 
-##   Simultaneous Tests for General Linear Hypotheses
-## 
-## Multiple Comparisons of Means: Tukey Contrasts
-## 
 ## 
 ## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
 ##     data = cuse)
@@ -701,13 +664,96 @@ Akaike Inf. Crit.
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
 </div>
+<div id="using-tukey-contrasts" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-tukey-contrasts" class="anchor"></a>Using Tukey contrasts</h2>
+<p>There is an easier way if you realize that these are the “Tukey” contrasts and use the <code>contrMat</code> function from the <code>multcomp</code> package:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit">
+<span class="kw">K2</span> <span class="op">=</span> <span class="kw">multcomp</span>::<span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html">contrMat</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, type=<span class="st">"Tukey"</span>)
+<span class="kw">K2</span>
+</pre></div>
+<pre><code>## 
+##   Multiple Comparisons of Means: Tukey Contrasts
+## 
+##        1  2  3 4
+## 2 - 1 -1  1  0 0
+## 3 - 1 -1  0  1 0
+## 4 - 1 -1  0  0 1
+## 3 - 2  0 -1  1 0
+## 4 - 2  0 -1  0 1
+## 4 - 3  0  0 -1 1</code></pre>
+<div class="sourceCode" id="cb42"><pre class="downlit">
+<span class="kw">fit.all.cont2</span> <span class="op">=</span> <span class="kw">multcomp</span>::<span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="kw">fit</span>, linfct=<span class="kw">K2</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">fit.all.cont2</span>)
+</pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
+##     data = cuse)
+## 
+## Linear Hypotheses:
+##            Estimate Std. Error z value Pr(&gt;|z|)    
+## 2 - 1 == 0   1.9678     0.2841   6.926   &lt;0.001 ***
+## 3 - 1 == 0   2.5555     0.2734   9.347   &lt;0.001 ***
+## 4 - 1 == 0   2.9318     0.2975   9.854   &lt;0.001 ***
+## 3 - 2 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
+## 4 - 2 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
+## 4 - 3 == 0   0.3763     0.1660   2.268    0.098 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>We didn’t get the same informative coefficient names this time, but we could have just by renaming the rows in <code>K2</code>, for example:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="kw">K2</span>) <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(<span class="kw">K</span>)
+<span class="kw">K2</span>
+</pre></div>
+<pre><code>## 
+##   Multiple Comparisons of Means: Tukey Contrasts
+## 
+##                1  2  3 4
+## 25-29 - &lt;25   -1  1  0 0
+## 30-39 - &lt;25   -1  0  1 0
+## 40-49 - &lt;25   -1  0  0 1
+## 30-39 - 25-29  0 -1  1 0
+## 40-49 - 25-29  0 -1  0 1
+## 40-49 - 30-39  0  0 -1 1</code></pre>
+<div class="sourceCode" id="cb46"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>( <span class="kw">multcomp</span>::<span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="kw">fit</span>, linfct=<span class="kw">K2</span>) )
+</pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
+##     data = cuse)
+## 
+## Linear Hypotheses:
+##                    Estimate Std. Error z value Pr(&gt;|z|)    
+## 25-29 - &lt;25 == 0     1.9678     0.2841   6.926  &lt; 1e-04 ***
+## 30-39 - &lt;25 == 0     2.5555     0.2734   9.347  &lt; 1e-04 ***
+## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854  &lt; 1e-04 ***
+## 30-39 - 25-29 == 0   0.5876     0.1406   4.181 0.000141 ***
+## 40-49 - 25-29 == 0   0.9640     0.1831   5.265  &lt; 1e-04 ***
+## 40-49 - 30-39 == 0   0.3763     0.1660   2.268 0.098152 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+</div>
 <div id="other-contrast-schemes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other-contrast-schemes" class="anchor"></a>Other contrast schemes</h2>
 <p>There are plenty of canned contrast schemes provided by <code><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html">multcomp::contrMat</a></code>. Note use of the <code><a href="https://rdrr.io/r/utils/example.html">example()</a></code> function to run all examples from the <code>contrmat()</code> function. This is a great example of how there are <strong>many</strong> ways to analyze one particular experimental design, but that you need to know design matrices to utilize many of them.</p>
 <p>In these examples, the first line <code>n &lt;- c(10,20,30,40)</code> just signifies four levels, <code>n = 1:4</code> would do exactly the same thing.</p>
-<div class="sourceCode" id="cb48"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">multcomp</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"contrMat"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb48"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span>(<span class="st">"contrMat"</span>)
+</pre></div>
 <pre><code>## 
 ## cntrMt&gt;  n &lt;- c(10,20,30,40)
 ## 
@@ -845,7 +891,7 @@ Akaike Inf. Crit.
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
