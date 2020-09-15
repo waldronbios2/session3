@@ -272,7 +272,7 @@
 <span class="kw">bcoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit1</span>), <span class="fl">2</span>)
 </pre></div>
 <p>Here I’m going to take advantage of R Markdown’s support for LaTeX formulae to write out the fitted regression model. I also use the ` r 2+2 ` syntax (the result is 4) for putting results of R code inline, instead of writing out numbers of the coefficients. I never wrote the number “four”, but you’ll have to look at the .Rmd to see how I did that! Doing this in reports allows you to update them as input data changes, without having to manually re-enter or copy numbers.</p>
-<p><span class="math inline">\(P = \textit{logit}^{-1} \left(  -1.13 + 0.39 \times \textit{age25-29} +  0.91 \times \textit{age30-39} +  1.19 \times \textit{age40-49} +  NA \times \textit{educationlow} +  -0.83 \times \textit{wantsMoreyes}  \right)\)</span></p>
+<p><span class="math inline">\(P = \textit{logit}^{-1} \left(  -1.13 + 0.39 \times \textit{age25-29} +  0.91 \times \textit{age30-39} +  1.19 \times \textit{age40-49} +  0.32 \times \textit{educationhigh} +  -0.83 \times \textit{wantsMoreyes}  \right)\)</span></p>
 <p><span class="math inline">\(\textit{logit}^{-1}(x) = \frac{1}{1+e^{-x}}\)</span></p>
 </div>
 <div id="what-is-the-expected-probability" class="section level1">
@@ -283,8 +283,8 @@
 <p>This can be done using the <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> function, using a new <code>data.frame</code> giving the values that you want to predict for:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit">
 <span class="kw">invLogit</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">x</span>) <span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span>(<span class="op">-</span><span class="kw">x</span>))
-<span class="kw">newdata</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(age=<span class="st">"25-29"</span>, education=<span class="st">"high"</span>, wantsMore=<span class="st">"yes"</span>)
-<span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">fit1</span>, newdata=<span class="kw">newdata</span>) )
+<span class="kw">q4data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(age=<span class="st">"25-29"</span>, education=<span class="st">"high"</span>, wantsMore=<span class="st">"yes"</span>)
+<span class="fu">invLogit</span>( <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(<span class="kw">fit1</span>, newdata=<span class="kw">q4data</span>) )
 </pre></div>
 <pre><code>##         1 
 ## 0.2223899</code></pre>
@@ -659,7 +659,7 @@ Akaike Inf. Crit.
 ## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***
 ## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
 ## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
-## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0982 .  
+## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0981 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -702,7 +702,7 @@ Akaike Inf. Crit.
 ## 4 - 1 == 0   2.9318     0.2975   9.854   &lt;0.001 ***
 ## 3 - 2 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
 ## 4 - 2 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
-## 4 - 3 == 0   0.3763     0.1660   2.268    0.098 .  
+## 4 - 3 == 0   0.3763     0.1660   2.268   0.0983 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
@@ -735,12 +735,12 @@ Akaike Inf. Crit.
 ## 
 ## Linear Hypotheses:
 ##                    Estimate Std. Error z value Pr(&gt;|z|)    
-## 25-29 - &lt;25 == 0     1.9678     0.2841   6.926  &lt; 1e-04 ***
-## 30-39 - &lt;25 == 0     2.5555     0.2734   9.347  &lt; 1e-04 ***
-## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854  &lt; 1e-04 ***
-## 30-39 - 25-29 == 0   0.5876     0.1406   4.181 0.000141 ***
-## 40-49 - 25-29 == 0   0.9640     0.1831   5.265  &lt; 1e-04 ***
-## 40-49 - 30-39 == 0   0.3763     0.1660   2.268 0.098152 .  
+## 25-29 - &lt;25 == 0     1.9678     0.2841   6.926   &lt;0.001 ***
+## 30-39 - &lt;25 == 0     2.5555     0.2734   9.347   &lt;0.001 ***
+## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***
+## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***
+## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***
+## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0983 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)</code></pre>
