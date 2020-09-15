@@ -114,7 +114,7 @@ $P = \textit{logit}^{-1} \left(
    `r bcoef["(Intercept)"]` + `r bcoef["age25-29"]` \times \textit{age25-29} + 
    `r bcoef["age30-39"]` \times \textit{age30-39} +
    `r bcoef["age40-49"]` \times \textit{age40-49} +
-   `r bcoef["educationlow"]` \times \textit{educationlow} +
+   `r bcoef["educationhigh"]` \times \textit{educationhigh} +
    `r bcoef["wantsMoreyes"]` \times \textit{wantsMoreyes} 
    \right)$
 
@@ -129,8 +129,8 @@ Based on ```fit1```, what is the expected probability of an individual 25-29 yea
 This can be done using the `predict()` function, using a new `data.frame` giving the values that you want to predict for:
 ```{r}
 invLogit <- function(x) 1/(1+exp(-x))
-newdata=data.frame(age="25-29", education="high", wantsMore="yes")
-invLogit( predict(fit1, newdata=newdata) )
+q4data <- data.frame(age="25-29", education="high", wantsMore="yes")
+invLogit( predict(fit1, newdata=q4data) )
 ```
 
 By default, `predict()` predicts on the original data, and taking a look, I noticed that the 7th value is the one we want to predict on:
