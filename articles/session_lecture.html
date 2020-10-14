@@ -205,9 +205,8 @@ P(x) = g^{-1}\left( \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_
 <p>From <a href="http://data.princeton.edu/wws509/datasets/#cuse" class="uri">http://data.princeton.edu/wws509/datasets/#cuse</a></p>
 
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">cuse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span>(<span class="st">"http://data.princeton.edu/wws509/datasets/cuse.dat"</span>, header=<span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">cuse</span>)
-</pre></div>
+<span class="va">cuse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="st">"http://data.princeton.edu/wws509/datasets/cuse.dat"</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cuse</span><span class="op">)</span></pre></div>
 <pre><code>##      age             education          wantsMore            notUsing     
 ##  Length:16          Length:16          Length:16          Min.   :  8.00  
 ##  Class :character   Class :character   Class :character   1st Qu.: 31.00  
@@ -230,10 +229,9 @@ P(x) = g^{-1}\left( \beta_0 + \beta_1 x_{1i} + \beta_2 x_{2i} + ... + \beta_p x_
 </p>
 
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">wantsMore</span>, 
-           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">fit</span>)
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">wantsMore</span>, 
+           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(using, notUsing) ~ wantsMore, family = binomial("logit"), 
@@ -297,10 +295,9 @@ Diagram of the estimated coefficients in the GLM. The yellow arrow indicates the
 </h2>
 
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span>, 
-           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">fit</span>)
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span>, 
+           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), 
@@ -380,9 +377,8 @@ Diagram of the estimated coefficients in the GLM. The yellow arrow indicates the
 <a href="#regression-on-age-and-wantsmore" class="anchor"></a>Regression on <strong>age</strong> and <strong>wantsMore</strong>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span> <span class="op">+</span> <span class="kw">wantsMore</span>, 
-           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">wantsMore</span>, 
+           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <table class="table table">
 <thead><tr>
 <th style="text-align:left;">
@@ -503,9 +499,8 @@ E[y|x] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1*x_2
 <h2 class="hasAnchor">
 <a href="#interaction-effect-modification-fit" class="anchor"></a>Interaction / Effect Modification (fit)</h2>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span> <span class="op">*</span> <span class="kw">wantsMore</span>, 
-           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">*</span> <span class="va">wantsMore</span>, 
+           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></pre></div>
 
 <table class="table table">
 <thead><tr>
@@ -723,9 +718,8 @@ Y_N
 <li>The model formula encodes a default model matrix, e.g.:</li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>( <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>) )
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">group</span>)
-</pre></div>
+<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) group2
 ## 1           1      0
 ## 2           1      0
@@ -742,9 +736,8 @@ Y_N
 <a href="#choice-of-design-matrix-contd" class="anchor"></a>Choice of design matrix (cont’d)</h2>
 <p>What if we forgot to code group as a factor?</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span>)
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">group</span>)
-</pre></div>
+<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) group
 ## 1           1     1
 ## 2           1     1
@@ -757,9 +750,8 @@ Y_N
 <h2 class="hasAnchor">
 <a href="#more-groups-still-one-variable" class="anchor"></a>More groups, still one variable</h2>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>))
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">group</span>)
-</pre></div>
+<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) group2 group3
 ## 1           1      0      0
 ## 2           1      0      0
@@ -777,10 +769,9 @@ Y_N
 <h2 class="hasAnchor">
 <a href="#changing-the-baseline-group" class="anchor"></a>Changing the baseline group</h2>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span>))
-<span class="kw">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span>(x=<span class="kw">group</span>, ref=<span class="fl">3</span>)
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">group</span>)
-</pre></div>
+<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="va">group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">group</span>, ref<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">group</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) group1 group2
 ## 1           1      1      0
 ## 2           1      1      0
@@ -799,10 +790,9 @@ Y_N
 <a href="#more-than-one-variable" class="anchor"></a>More than one variable</h2>
 
 <div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="kw">agegroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>))
-<span class="kw">wantsMore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span>,<span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span>))
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">agegroup</span> <span class="op">+</span> <span class="kw">wantsMore</span>)
-</pre></div>
+<span class="va">agegroup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+<span class="va">wantsMore</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span>,<span class="st">"y"</span>,<span class="st">"y"</span>,<span class="st">"n"</span>,<span class="st">"n"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">agegroup</span> <span class="op">+</span> <span class="va">wantsMore</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) agegroup2 wantsMorey
 ## 1           1         0          1
 ## 2           1         0          1
@@ -826,8 +816,7 @@ Y_N
 <a href="#with-an-interaction-term" class="anchor"></a>With an interaction term</h2>
 
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span>(<span class="op">~</span> <span class="kw">agegroup</span> <span class="op">+</span> <span class="kw">wantsMore</span> <span class="op">+</span> <span class="kw">agegroup</span><span class="op">:</span><span class="kw">wantsMore</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">agegroup</span> <span class="op">+</span> <span class="va">wantsMore</span> <span class="op">+</span> <span class="va">agegroup</span><span class="op">:</span><span class="va">wantsMore</span><span class="op">)</span></pre></div>
 <pre><code>##   (Intercept) agegroup2 wantsMorey agegroup2:wantsMorey
 ## 1           1         0          1                    0
 ## 2           1         0          1                    0
@@ -857,9 +846,8 @@ Y_N
 </li>
 </ul>
 <div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="kw">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="kw">using</span>, <span class="kw">notUsing</span>) <span class="op">~</span> <span class="kw">age</span> <span class="op">*</span> <span class="kw">wantsMore</span>, 
-           data=<span class="kw">cuse</span>, family=<span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span>(<span class="st">"logit"</span>))
-</pre></div>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">*</span> <span class="va">wantsMore</span>, 
+           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></pre></div>
 
 <table class="table table">
 <thead><tr>
@@ -1033,8 +1021,7 @@ age40-49:wantsMoreyes
 <a href="#design-matrix-constructed-with-librarymultcomp" class="anchor"></a>Design matrix constructed with library(multcomp)</h2>
 
 <div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span>(<span class="kw">fit</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></pre></div>
 <pre><code>##           (Intercept)              age25-29              age30-39 
 ##           -1.45528723            0.63538835            1.54114852 
 ##              age40-49          wantsMoreyes age25-29:wantsMoreyes 
@@ -1042,15 +1029,13 @@ age40-49:wantsMoreyes
 ## age30-39:wantsMoreyes age40-49:wantsMoreyes 
 ##           -1.09049316           -1.36714805</code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit">
-<span class="kw">contmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span>), <span class="fl">1</span>) 
-<span class="kw">contmat</span>
-</pre></div>
+<span class="va">contmat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="op">-</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span> 
+<span class="va">contmat</span></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
 ## [1,]    0    0    0    0    0    0   -1    1</code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="kw">new.interaction</span> <span class="op">&lt;-</span> <span class="kw">multcomp</span>::<span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span>(<span class="kw">fit</span>, linfct=<span class="kw">contmat</span>) 
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">new.interaction</span>)
-</pre></div>
+<span class="va">new.interaction</span> <span class="op">&lt;-</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html">glht</a></span><span class="op">(</span><span class="va">fit</span>, linfct<span class="op">=</span><span class="va">contmat</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">new.interaction</span><span class="op">)</span></pre></div>
 <pre><code>## 
 ##   Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -1089,7 +1074,7 @@ age40-49:wantsMoreyes
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
