@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,14 +39,14 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">session3</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lecture and Lab
      
     <span class="caret"></span>
@@ -57,23 +59,23 @@
       <a href="articles/session_lecture.pdf">Lecture notes PDF</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="articles/session_lab.html">Lab materials</a>
     </li>
   </ul>
 </li>
-<li class="dropdown-header">
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/waldronbios2/session3/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/waldronbios2/session3/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/leviwaldron1">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+  <a href="https://twitter.com/leviwaldron1" class="external-link">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -91,29 +93,29 @@
   <div class="contents col-md-9">
 
 
-<div id="session-3-regression-coefficients-and-model-matrices" class="section level1">
+<div class="section level1">
 
-<div id="lecture" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lecture" class="anchor"></a>Lecture</h2>
+<div class="section level2">
+<h2 id="lecture">Lecture<a class="anchor" aria-label="anchor" href="#lecture"></a>
+</h2>
 <p><strong>Learning Objectives</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Interpret main coefficients in logistic regression</li>
 <li>Interpret interaction terms in logistic regression</li>
 <li>Define and interpret model matrices for (generalized) linear models</li>
 </ol>
 <p><strong>Outline</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Review of GLM</li>
 <li>Interpretation of logistic regression coefficients</li>
 <li>Introduction to model matrices</li>
 </ol>
 </div>
-<div id="lab" class="section level2">
-<h2 class="hasAnchor">
-<a href="#lab" class="anchor"></a>Lab</h2>
+<div class="section level2">
+<h2 id="lab">Lab<a class="anchor" aria-label="anchor" href="#lab"></a>
+</h2>
 <p><strong>Learning objectives</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>perform and interpret logistic regression
 <ul>
 <li>interpret logistic regression coefficients</li>
@@ -123,7 +125,7 @@
 <li>perform and interpret likelihood ratio test</li>
 </ol>
 <p><strong>Exercises</strong></p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>What is the mean fraction of women using birth control for each age group? Each education level? For women who do or don’t want more children?
 <ul>
 <li>Hint: look at the “data wrangling” cheat sheet functions <code>mutate</code>, <code>group_by</code>, and <code>summarize</code>
@@ -131,7 +133,7 @@
 </ul>
 </li>
 <li>Based on <code>fit1</code>, write on paper the model for expected probability of using birth control. Don’t forget the logit function.</li>
-<li>Based on <code>fit1</code>, what is the expected probability of an individual 25-29 years old, with high education, who wants more children, using birth control? Calculate it manually, and using <code><a href="https://rdrr.io/r/stats/predict.html">predict(fit1)</a></code>
+<li>Based on <code>fit1</code>, what is the expected probability of an individual 25-29 years old, with high education, who wants more children, using birth control? Calculate it manually, and using <code>predict(fit1)</code>
 </li>
 <li>Based on <code>fit1</code>: Relative to women under 25 who want to have children, what is the predicted increase in odds that a woman 40-49 years old who does <em>not</em> want to have children will be taking birth control?</li>
 <li>Using a likelihood ratio test, is there evidence that a model with interactions improves on <code>fit1</code> (no interactions)?</li>
@@ -145,47 +147,57 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/waldronbios2/session3/">https://​github.com/​waldronbios2/​session3/​</a>
-</li>
-<li>Full course notes at <br><a href="https://waldronbios2.github.io/cunybios2/">https://​waldronbios2.github.io/​cunybios2/​</a>
-</li>
-<li>git clone at <br><a href="https://github.com/waldronbios2/session3.git">https://​github.com/​waldronbios2/​session3.git</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://waldronlab.io">Levi Waldron</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2725-0694" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="https://github.com/waldronbios2/session3/" class="external-link">Browse source code</a></li>
+<li><a href="https://waldronbios2.github.io/cunybios2/" class="external-link">Full course notes</a></li>
+<li><a href="https://github.com/waldronbios2/session3.git" class="external-link">git clone</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/waldronbios2/session3/actions"><img src="https://github.com/waldronbios2/session3/workflows/build/badge.svg" alt="Actions Status"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://creativecommons.org/licenses/by/4.0" class="external-link">CC BY 4.0</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing session3</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>
+<a href="https://waldronlab.io" class="external-link">Levi Waldron</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-2725-0694" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/waldronbios2/session3/actions" class="external-link"><img src="https://github.com/waldronbios2/session3/workflows/build/badge.svg" alt="Actions Status"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://waldronlab.io">Levi Waldron</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://waldronlab.io" class="external-link">Levi Waldron</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -193,6 +205,8 @@
 
   
 
+
+  
 
   </body>
 </html>
