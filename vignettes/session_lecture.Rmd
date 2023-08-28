@@ -26,8 +26,6 @@ always_allow_html: true
 ```{r loadlibs, echo=FALSE}
 suppressPackageStartupMessages({
   library(dplyr)
-#  devtools::install_github("kupietz/kableExtra")
-  library(kableExtra)
   library(xtable)
 })
 ```
@@ -185,8 +183,10 @@ fit <- glm(cbind(using, notUsing) ~ age + wantsMore,
 ```
 ```{r, echo=FALSE}
 xtable(fit) %>%
-  kbl(digits=2) %>%
-  kable_styling(bootstrap_options = "basic")
+  knitr::kable(digits=2)
+# xtable(fit) %>%
+#   kbl(digits=2) %>%
+#   kable_styling(bootstrap_options = "basic")
 ```
 
 ## Interaction / Effect Modification
@@ -207,8 +207,10 @@ fit <- glm(cbind(using, notUsing) ~ age * wantsMore,
 \tiny
 ```{r, echo=FALSE}
 xtable(fit) %>%
-  kbl(digits=2) %>%
-  kable_styling(bootstrap_options = "basic")
+  knitr::kable(digits=2)
+# xtable(fit) %>%
+#   kbl(digits=2) %>%
+#   kable_styling(bootstrap_options = "basic")
 ```
 
 
@@ -319,8 +321,7 @@ fit <- glm(cbind(using, notUsing) ~ age * wantsMore,
 \tiny
 ```{r, echo=FALSE}
 xtable(fit) %>%
-  kbl(digits=2) %>%
-  kable_styling(bootstrap_options = "basic")
+  knitr::kable(digits=2) 
 ```
 ## Design matrix to contrast what we want (cont'd)
 
