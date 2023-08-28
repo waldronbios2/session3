@@ -26,7 +26,7 @@ always_allow_html: true
 ```{r loadlibs, echo=FALSE}
 suppressPackageStartupMessages({
   library(dplyr)
-  devtools::install_github("kupietz/kableExtra")
+#  devtools::install_github("kupietz/kableExtra")
   library(kableExtra)
   library(xtable)
 })
