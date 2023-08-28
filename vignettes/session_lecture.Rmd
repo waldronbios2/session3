@@ -23,9 +23,10 @@ output:
 always_allow_html: true
 ---
 
-```{r, echo=FALSE}
+```{r loadlibs, echo=FALSE}
 suppressPackageStartupMessages({
   library(dplyr)
+  devtools::install_github("kupietz/kableExtra")
   library(kableExtra)
   library(xtable)
 })
@@ -103,7 +104,7 @@ From http://data.princeton.edu/wws509/datasets/#cuse
 
 \tiny
 ```{r readcuse}
-cuse <- read.table("http://data.princeton.edu/wws509/datasets/cuse.dat", header=TRUE)
+cuse <- read.table("cuse.dat", header=TRUE)
 summary(cuse)
 ```
 
