@@ -26,7 +26,6 @@ jobs:
         run: |-
           Rscript -e "install.packages(c('remotes', 'devtools'))"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
-          Rscript -e "devtools::install_github('kupietz/kableExtra')"
       # use several steps instead of build_site() because I don't want build_reference()
       - name: Build pkgdown
         run: |
