@@ -205,17 +205,8 @@ list.</p>
 <p>First create a new column containing the fraction using
 contraception:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Attaching package: 'dplyr'</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     filter, lag</span></span></code></pre>
-<pre><code><span><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cuse2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">cuse</span>, fracusing <span class="op">=</span> <span class="va">using</span> <span class="op">/</span> <span class="op">(</span><span class="va">using</span> <span class="op">+</span> <span class="va">notUsing</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">cuse2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">cuse</span>, fracusing <span class="op">=</span> <span class="va">using</span> <span class="op">/</span> <span class="op">(</span><span class="va">using</span> <span class="op">+</span> <span class="va">notUsing</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cuse2</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 6</span></span></span>
 <span><span class="co">##    age   education wantsMore notUsing using fracusing</span></span>
@@ -237,7 +228,7 @@ contraception:</p>
 <span><span class="co">## <span style="color: #BCBCBC;">15</span> 40-49 high      yes              8     8     0.5  </span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">16</span> 40-49 high      no              12    31     0.721</span></span></code></pre>
 <p>Now, group and summarize by age:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cuse2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">fracusing</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
 <span><span class="co">##   age   `mean(fracusing)`</span></span>
@@ -246,7 +237,7 @@ contraception:</p>
 <span><span class="co">## <span style="color: #BCBCBC;">2</span> 25-29             0.271</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">3</span> 30-39             0.388</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">4</span> 40-49             0.469</span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cuse2</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 16 × 6</span></span></span>
 <span><span class="co">##    age   education wantsMore notUsing using fracusing</span></span>
@@ -270,7 +261,7 @@ contraception:</p>
 <p>Here the <code>%&gt;%</code> is called a “pipe”, and it sends the
 output of the previous function to the input of the next function. This
 could also have been done in one step:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">cuse</span>, fracusing <span class="op">=</span> <span class="va">using</span> <span class="op">/</span> <span class="op">(</span><span class="va">using</span> <span class="op">+</span> <span class="va">notUsing</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">fracusing</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -296,7 +287,7 @@ control<a class="anchor" aria-label="anchor" href="#write-on-paper-the-model-for
 probability of using birth control? Don’t forget the (inverse) logit
 function.</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">education</span> <span class="op">+</span> <span class="va">wantsMore</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">cuse</span>,</span>
@@ -305,7 +296,7 @@ function.</p>
 <p>I’m going to store the coefficients of <code>fit1</code> in a new
 variable <code>b</code> just to save typing when writing out the
 formula, and round to two decimal places:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bcoef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>Here I’m going to take advantage of R Markdown’s support for LaTeX
 formulae to write out the fitted regression model. I also use the ` r
@@ -332,7 +323,7 @@ children, using birth control? Calculate it manually, and using
 <p>This can be done using the <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> function, using a
 new <code>data.frame</code> giving the values that you want to predict
 for:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">invLogit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">1</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">q4data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>age<span class="op">=</span><span class="st">"25-29"</span>, education<span class="op">=</span><span class="st">"high"</span>, wantsMore<span class="op">=</span><span class="st">"yes"</span><span class="op">)</span></span>
 <span><span class="fu">invLogit</span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit1</span>, newdata<span class="op">=</span><span class="va">q4data</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
@@ -341,7 +332,7 @@ for:</p>
 <p>By default, <code><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict()</a></code> predicts on the original data, and
 taking a look, I noticed that the 7th value is the one we want to
 predict on:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">invLogit</span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">[</span><span class="fl">7</span><span class="op">]</span> <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##         7 </span></span>
 <span><span class="co">## 0.2223899</span></span></code></pre>
@@ -349,14 +340,14 @@ predict on:</p>
 calculate the linear predictor, then use the inverse logit function.
 Note that education=“high” is the reference group, so we don’t use it
 here:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">invLogit</span><span class="op">(</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"(Intercept)"</span><span class="op">]</span> <span class="op">+</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"age25-29"</span><span class="op">]</span> <span class="op">+</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"wantsMoreyes"</span><span class="op">]</span> <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## (Intercept) </span></span>
 <span><span class="co">##   0.1722164</span></span></code></pre>
 <p>I don’t <em>really</em> care, but if the remnant “(Intercept)” name
 there were annoying me, I would assign this to a variable then get rid
 of that name:</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">invLogit</span><span class="op">(</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"(Intercept)"</span><span class="op">]</span> <span class="op">+</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"age25-29"</span><span class="op">]</span> <span class="op">+</span> <span class="va">bcoef</span><span class="op">[</span><span class="st">"wantsMoreyes"</span><span class="op">]</span> <span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="va">res</span></span></code></pre></div>
@@ -370,7 +361,7 @@ have children, what is the predicted odds ratio for a woman 40-49 years
 old who does <em>not</em> want to have children will be taking birth
 control?</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">[</span><span class="st">"age40-49"</span><span class="op">]</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">[</span><span class="st">"wantsMoreyes"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## age40-49 </span></span>
 <span><span class="co">##  7.55488</span></span></code></pre>
@@ -381,7 +372,7 @@ control?</p>
 <p>Using a likelihood ratio test, is there evidence that a model with
 interactions improves on <code>fit1</code> (no interactions)?</p>
 <p><strong>Solution</strong></p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit1.int</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">*</span> <span class="va">education</span> <span class="op">*</span> <span class="va">wantsMore</span>, </span>
 <span>           data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">fit1</span>, <span class="va">fit1.int</span>, test<span class="op">=</span><span class="st">"LRT"</span><span class="op">)</span></span></code></pre></div>
@@ -691,27 +682,27 @@ contrast significant?</p>
 and following an example from <code><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">?glht</a></code>. I’m not going to
 bother anymore creating pretty tables with <code>stargazer</code>
 though…</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span>, data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## (Intercept)    age25-29    age30-39    age40-49 </span></span>
 <span><span class="co">##  -1.5071591   0.4606758   1.0482932   1.4246380</span></span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="st">"25-29 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>           <span class="st">"30-39 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>           <span class="st">"40-49 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">K</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="st">"25-29 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>           <span class="st">"30-39 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>           <span class="st">"40-49 - &lt;25"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>           <span class="st">"30-39 - 25-29"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
 <span>           <span class="st">"40-49 - 25-29"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>           <span class="st">"40-49 - 30-39"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">K</span></span></code></pre></div>
 <pre><code><span><span class="co">##               [,1] [,2] [,3] [,4]</span></span>
-<span><span class="co">## 25-29 - &lt;25     -1    1    0    0</span></span>
-<span><span class="co">## 30-39 - &lt;25     -1    0    1    0</span></span>
-<span><span class="co">## 40-49 - &lt;25     -1    0    0    1</span></span>
+<span><span class="co">## 25-29 - &lt;25      0    1    0    0</span></span>
+<span><span class="co">## 30-39 - &lt;25      0    0    1    0</span></span>
+<span><span class="co">## 40-49 - &lt;25      0    0    0    1</span></span>
 <span><span class="co">## 30-39 - 25-29    0   -1    1    0</span></span>
 <span><span class="co">## 40-49 - 25-29    0   -1    0    1</span></span>
 <span><span class="co">## 40-49 - 30-39    0    0   -1    1</span></span></code></pre>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit.all.cont</span> <span class="op">=</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span><span class="va">fit</span>, linfct<span class="op">=</span><span class="va">K</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit.all.cont</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -722,12 +713,12 @@ though…</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Linear Hypotheses:</span></span>
 <span><span class="co">##                    Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">## 25-29 - &lt;25 == 0     1.9678     0.2841   6.926   &lt;0.001 ***</span></span>
-<span><span class="co">## 30-39 - &lt;25 == 0     2.5555     0.2734   9.347   &lt;0.001 ***</span></span>
-<span><span class="co">## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***</span></span>
+<span><span class="co">## 25-29 - &lt;25 == 0     0.4607     0.1727   2.667   0.0375 *  </span></span>
+<span><span class="co">## 30-39 - &lt;25 == 0     1.0483     0.1544   6.788   &lt;0.001 ***</span></span>
+<span><span class="co">## 40-49 - &lt;25 == 0     1.4246     0.1940   7.345   &lt;0.001 ***</span></span>
 <span><span class="co">## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
 <span><span class="co">## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***</span></span>
-<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0979 .  </span></span>
+<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.1035    </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## (Adjusted p values reported -- single-step method)</span></span></code></pre>
@@ -737,9 +728,13 @@ though…</p>
 </h3>
 <p>There is an easier way if you realize that these are the “Tukey”
 contrasts and use the <code>contrMat</code> function from the
-<code>multcomp</code> package:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">K2</span> <span class="op">=</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html" class="external-link">contrMat</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, type<span class="op">=</span><span class="st">"Tukey"</span><span class="op">)</span></span>
+<code>multcomp</code> package. These automatic contrasts assume a
+no-intercept model, which would be hard to interpret outside the context
+of <code><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html" class="external-link">multcomp::contrMat</a></code>, but can be used as an intermediate
+step to get here.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitnoint</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">using</span>, <span class="va">notUsing</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span><span class="op">-</span><span class="fl">1</span>, data<span class="op">=</span><span class="va">cuse</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">K2</span> <span class="op">=</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/contrMat.html" class="external-link">contrMat</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, type<span class="op">=</span><span class="st">"Tukey"</span><span class="op">)</span></span>
 <span><span class="va">K2</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##   Multiple Comparisons of Means: Tukey Contrasts</span></span>
@@ -751,8 +746,8 @@ contrasts and use the <code>contrMat</code> function from the
 <span><span class="co">## 3 - 2  0 -1  1 0</span></span>
 <span><span class="co">## 4 - 2  0 -1  0 1</span></span>
 <span><span class="co">## 4 - 3  0  0 -1 1</span></span></code></pre>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit.all.cont2</span> <span class="op">=</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span><span class="va">fit</span>, linfct<span class="op">=</span><span class="va">K2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit.all.cont2</span> <span class="op">=</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span><span class="va">fitnoint</span>, linfct<span class="op">=</span><span class="va">K2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fit.all.cont2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##   Simultaneous Tests for General Linear Hypotheses</span></span>
@@ -760,24 +755,23 @@ contrasts and use the <code>contrMat</code> function from the
 <span><span class="co">## Multiple Comparisons of Means: Tukey Contrasts</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## Fit: glm(formula = cbind(using, notUsing) ~ age, family = binomial("logit"), </span></span>
+<span><span class="co">## Fit: glm(formula = cbind(using, notUsing) ~ age - 1, family = binomial("logit"), </span></span>
 <span><span class="co">##     data = cuse)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Linear Hypotheses:</span></span>
 <span><span class="co">##            Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">## 2 - 1 == 0   1.9678     0.2841   6.926   &lt;0.001 ***</span></span>
-<span><span class="co">## 3 - 1 == 0   2.5555     0.2734   9.347   &lt;0.001 ***</span></span>
-<span><span class="co">## 4 - 1 == 0   2.9318     0.2975   9.854   &lt;0.001 ***</span></span>
+<span><span class="co">## 2 - 1 == 0   0.4607     0.1727   2.667   0.0375 *  </span></span>
+<span><span class="co">## 3 - 1 == 0   1.0483     0.1544   6.788   &lt;0.001 ***</span></span>
+<span><span class="co">## 4 - 1 == 0   1.4246     0.1940   7.345   &lt;0.001 ***</span></span>
 <span><span class="co">## 3 - 2 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
 <span><span class="co">## 4 - 2 == 0   0.9640     0.1831   5.265   &lt;0.001 ***</span></span>
-<span><span class="co">## 4 - 3 == 0   0.3763     0.1660   2.268   0.0983 .  </span></span>
+<span><span class="co">## 4 - 3 == 0   0.3763     0.1660   2.268   0.1034    </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## (Adjusted p values reported -- single-step method)</span></span></code></pre>
 <p>We didn’t get the same informative coefficient names this time, but
-we could have just by renaming the rows in <code>K2</code>, for
-example:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+we can rename the rows in <code>K2</code>, for example:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">K2</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">K</span><span class="op">)</span></span>
 <span><span class="va">K2</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -790,7 +784,7 @@ example:</p>
 <span><span class="co">## 30-39 - 25-29  0 -1  1 0</span></span>
 <span><span class="co">## 40-49 - 25-29  0 -1  0 1</span></span>
 <span><span class="co">## 40-49 - 30-39  0  0 -1 1</span></span></code></pre>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span> <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span><span class="va">fit</span>, linfct<span class="op">=</span><span class="va">K2</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##   Simultaneous Tests for General Linear Hypotheses</span></span>
@@ -808,7 +802,7 @@ example:</p>
 <span><span class="co">## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***</span></span>
 <span><span class="co">## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
 <span><span class="co">## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***</span></span>
-<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0982 .  </span></span>
+<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268    0.098 .  </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## (Adjusted p values reported -- single-step method)</span></span></code></pre>
@@ -825,7 +819,7 @@ design matrices to utilize many of them.</p>
 <p>In these examples, the first line <code>n &lt;- c(10,20,30,40)</code>
 just signifies four levels, <code>n = 1:4</code> would do exactly the
 same thing.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org" class="external-link">multcomp</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/example.html" class="external-link">example</a></span><span class="op">(</span><span class="st">"contrMat"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
