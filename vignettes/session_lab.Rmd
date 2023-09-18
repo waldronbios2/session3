@@ -39,7 +39,7 @@ Load the data from http://data.princeton.edu/wws509/datasets/#cuse. From this pa
 
 See Session 2 for some discussion about reading this file. Here we just do it.
 
-```{r}
+```{r, message=FALSE}
 library(readr)
 cuse <- read_table2("cuse.dat",
     col_types = cols(
@@ -63,7 +63,7 @@ What is the mean fraction of women using birth control for each age group? Each 
 
 First create a new column containing the fraction using contraception:
 
-```{r}
+```{r, message=FALSE}
 library(dplyr)
 cuse2 <- mutate(cuse, fracusing = using / (using + notUsing))
 cuse2
@@ -211,9 +211,9 @@ First, I'll do it manually, using the `multcomp` package and following an exampl
 ```{r}
 fit = glm(cbind(using, notUsing) ~ age, data=cuse, family=binomial("logit"))
 coef(fit)
-K <- rbind("25-29 - <25" = c(-1, 1, 0, 0),
-           "30-39 - <25" = c(-1, 0, 1, 0),
-           "40-49 - <25" = c(-1, 0, 0, 1),
+K <- rbind("25-29 - <25" = c(0, 1, 0, 0),
+           "30-39 - <25" = c(0, 0, 1, 0),
+           "40-49 - <25" = c(0, 0, 0, 1),
            "30-39 - 25-29" = c(0, -1, 1, 0),
            "40-49 - 25-29" = c(0, -1, 0, 1),
            "40-49 - 30-39" = c(0, 0, -1, 1))
@@ -224,16 +224,20 @@ summary(fit.all.cont)
 
 ## Using Tukey contrasts
 
-There is an easier way if you realize that these are the "Tukey" contrasts and use the `contrMat` function from the `multcomp` package:
+There is an easier way if you realize that these are the "Tukey" contrasts and use the `contrMat` function from the `multcomp` package. These automatic contrasts
+assume a no-intercept model, which would be hard to interpret outside the context of 
+`multcomp::contrMat`, but can be used as an intermediate step to get here.
 
 ```{r}
+fitnoint = glm(cbind(using, notUsing) ~ age-1, data=cuse, family=binomial("logit"))
 K2 = multcomp::contrMat(1:4, type="Tukey")
 K2
-fit.all.cont2 = multcomp::glht(fit, linfct=K2)
+fit.all.cont2 = multcomp::glht(fitnoint, linfct=K2)
 summary(fit.all.cont2)
 ```
 
-We didn't get the same informative coefficient names this time, but we could have just by renaming the rows in `K2`, for example:
+We didn't get the same informative coefficient names this time, but we can
+rename the rows in `K2`, for example:
 
 ```{r}
 rownames(K2) = rownames(K)
