@@ -10,12 +10,12 @@ Imports:
     tidyverse,
     stargazer,
     RColorBrewer,
+    xtable,
+    kableExtra,
     multcomp
 Suggests:
     pkgdown,
     knitr,
-    kableExtra,
-    xtable,
     rmarkdown
 License: CC BY 4.0
 Encoding: UTF-8
