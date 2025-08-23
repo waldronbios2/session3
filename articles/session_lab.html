@@ -6,13 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sessions 3 lab exercise: Regression analysis of contraceptive use data • session3</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Sessions 3 lab exercise: Regression analysis of contraceptive use data">
-<meta property="og:description" content="session3">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -25,7 +24,7 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -48,7 +47,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lecture and Lab
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -68,15 +67,9 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/waldronbios2/session3/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="https://twitter.com/leviwaldron1" class="external-link">
     <span class="fab fa-twitter fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -87,7 +80,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -98,7 +91,7 @@ contraceptive use data</h1>
 Waldron</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/waldronbios2/session3/blob/HEAD/vignettes/session_lab.Rmd" class="external-link"><code>vignettes/session_lab.Rmd</code></a></small>
+
       <div class="hidden name"><code>session_lab.Rmd</code></div>
 
     </div>
@@ -305,12 +298,14 @@ instead of writing out numbers of the coefficients. I never wrote the
 number “four”, but you’ll have to look at the .Rmd to see how I did
 that! Doing this in reports allows you to update them as input data
 changes, without having to manually re-enter or copy numbers.</p>
-<p><span class="math inline">\(P = \textit{logit}^{-1} \left(  -1.13 +
-0.39 \times \textit{age25-29} +  0.91 \times \textit{age30-39} +  1.19
-\times \textit{age40-49} +  0.32 \times \textit{educationhigh} +  -0.83
-\times \textit{wantsMoreyes}  \right)\)</span></p>
-<p><span class="math inline">\(\textit{logit}^{-1}(x) =
-\frac{1}{1+e^{-x}}\)</span></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><msup><mtext mathvariant="italic">𝑙𝑜𝑔𝑖𝑡</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mn>1.13</mn><mo>+</mo><mn>0.39</mn><mo>×</mo><mtext mathvariant="italic">𝑎𝑔𝑒25-29</mtext><mo>+</mo><mn>0.91</mn><mo>×</mo><mtext mathvariant="italic">𝑎𝑔𝑒30-39</mtext><mo>+</mo><mn>1.19</mn><mo>×</mo><mtext mathvariant="italic">𝑎𝑔𝑒40-49</mtext><mo>+</mo><mn>0.32</mn><mo>×</mo><mtext mathvariant="italic">𝑒𝑑𝑢𝑐𝑎𝑡𝑖𝑜𝑛ℎ𝑖𝑔ℎ</mtext><mo>+</mo><mi>−</mi><mn>0.83</mn><mo>×</mo><mtext mathvariant="italic">𝑤𝑎𝑛𝑡𝑠𝑀𝑜𝑟𝑒𝑦𝑒𝑠</mtext><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">P = \textit{logit}^{-1} \left(
+   -1.13 + 0.39 \times \textit{age25-29} +
+   0.91 \times \textit{age30-39} +
+   1.19 \times \textit{age40-49} +
+   0.32 \times \textit{educationhigh} +
+   -0.83 \times \textit{wantsMoreyes}
+   \right)</annotation></semantics></math></p>
+<p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mtext mathvariant="italic">𝑙𝑜𝑔𝑖𝑡</mtext><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>x</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\textit{logit}^{-1}(x) = \frac{1}{1+e^{-x}}</annotation></semantics></math></p>
 </div>
 <div class="section level2">
 <h2 id="what-is-the-expected-probability">What is the expected probability…<a class="anchor" aria-label="anchor" href="#what-is-the-expected-probability"></a>
@@ -713,12 +708,12 @@ though…</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Linear Hypotheses:</span></span>
 <span><span class="co">##                    Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">## 25-29 - &lt;25 == 0     0.4607     0.1727   2.667   0.0376 *  </span></span>
+<span><span class="co">## 25-29 - &lt;25 == 0     0.4607     0.1727   2.667   0.0377 *  </span></span>
 <span><span class="co">## 30-39 - &lt;25 == 0     1.0483     0.1544   6.788   &lt;0.001 ***</span></span>
 <span><span class="co">## 40-49 - &lt;25 == 0     1.4246     0.1940   7.345   &lt;0.001 ***</span></span>
 <span><span class="co">## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
 <span><span class="co">## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***</span></span>
-<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.1036    </span></span>
+<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.1035    </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## (Adjusted p values reported -- single-step method)</span></span></code></pre>
@@ -760,7 +755,7 @@ step to get here.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## Linear Hypotheses:</span></span>
 <span><span class="co">##            Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span><span class="co">## 2 - 1 == 0   0.4607     0.1727   2.667   0.0373 *  </span></span>
+<span><span class="co">## 2 - 1 == 0   0.4607     0.1727   2.667   0.0376 *  </span></span>
 <span><span class="co">## 3 - 1 == 0   1.0483     0.1544   6.788   &lt;0.001 ***</span></span>
 <span><span class="co">## 4 - 1 == 0   1.4246     0.1940   7.345   &lt;0.001 ***</span></span>
 <span><span class="co">## 3 - 2 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
@@ -802,7 +797,7 @@ we can rename the rows in <code>K2</code>, for example:</p>
 <span><span class="co">## 40-49 - &lt;25 == 0     2.9318     0.2975   9.854   &lt;0.001 ***</span></span>
 <span><span class="co">## 30-39 - 25-29 == 0   0.5876     0.1406   4.181   &lt;0.001 ***</span></span>
 <span><span class="co">## 40-49 - 25-29 == 0   0.9640     0.1831   5.265   &lt;0.001 ***</span></span>
-<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0981 .  </span></span>
+<span><span class="co">## 40-49 - 30-39 == 0   0.3763     0.1660   2.268   0.0979 .  </span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## (Adjusted p values reported -- single-step method)</span></span></code></pre>
@@ -946,9 +941,7 @@ same thing.</p>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -961,16 +954,16 @@ same thing.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>
